@@ -179,7 +179,7 @@ model.summary()
 # history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs = 1,batch_size = 10*2,callbacks = early_stopping,verbose = True)
 
 early_stopping = EarlyStopping(mode='min',patience=5)
-history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),validation_data = ([val_input_ids,val_attention_mask],np.array(test_tag)),epochs = 1,batch_size = 10*2,callbacks = early_stopping,verbose = True)
+history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),validation_data = ([val_input_ids,val_attention_mask],np.array(test_tag)),epochs = 3,batch_size = 10*2,callbacks = early_stopping,verbose = True)
 
 model.save_weights("ner_bert_weights")
 
@@ -252,7 +252,7 @@ test_df.rename({'Unnamed: 0.1':'Sentence','word':'Word','label':'Tag'},axis=1,in
 test_df
 
 test_df.Tag.unique()
-print(f"Number of Tags : {len(test_df.Tag.unique())}")#[input_ids,attention_mask]
+print(f"Number of Tags : {len(test_df.Tag.unique())}")
 
 # EDA
 pie = test_df['Tag'].value_counts()

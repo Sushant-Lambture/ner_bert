@@ -57,8 +57,8 @@ warnings.filterwarnings("ignore")
 dataframe = pd.read_csv("train_final.csv")
 dataframe = dataframe.dropna()
 # dataframe = dataframe.drop('Unnamed: 0',axis=1)
-# dataframe.rename({'Unnamed: 0':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
-dataframe.rename({'index':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
+dataframe.rename({'Unnamed: 0':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
+# dataframe.rename({'index':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
 dataframe
 
 dataframe.Tag.unique()

@@ -7,10 +7,10 @@ Original file is located at
     https://colab.research.google.com/drive/1cOf-BCCfLCYx6tFCmmE6Ykla2ihi8uSj
 """
 
-!python --version
+# !python --version
 
-from google.colab import drive
-drive.mount('/content/drive')
+# from google.colab import drive
+# drive.mount('/content/drive')
 
 import tensorflow  as tf
 # import tensorflow.compat.v1 as tf
@@ -25,7 +25,7 @@ except:
     strategy = tf.distribute.get_strategy()
 print('Number of replicas:', strategy.num_replicas_in_sync)
 
-pip install transformers
+# pip install transformers
 
 import numpy as np
 import pandas as pd
@@ -34,7 +34,7 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 
 import tensorflow as tf
-# # import tensorflow.compat.v1 as tf
+# import tensorflow.compat.v1 as tf
 from tensorflow.keras.callbacks import EarlyStopping
 
 
@@ -53,7 +53,7 @@ from torch._C import *
 import warnings
 warnings.filterwarnings("ignore")
 
-dataframe = pd.read_csv(r"/content/drive/MyDrive/train_set2.csv")
+dataframe = pd.read_csv(r"/home/sushant/env/ner_bert/ner_bert/train_final.csv")
 dataframe = dataframe.dropna()
 # dataframe = dataframe.drop('Unnamed: 0',axis=1)
 # dataframe.rename({'Unnamed: 0':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
@@ -388,6 +388,6 @@ from sklearn.metrics import accuracy_score,classification_report,f1_score
 print(accuracy_score(true_enc_tag,pred_enc_tag))
 print(classification_report(true_enc_tag,pred_enc_tag))
 
-true_enc_tag
+# true_enc_tag
 
-pred_enc_tag
+# pred_enc_tag

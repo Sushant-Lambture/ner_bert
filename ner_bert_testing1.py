@@ -245,7 +245,7 @@ print(classification_report(true_enc_tag,pred_enc_tag))
 
 
 
-test_df=pd.read_csv(r"/content/drive/MyDrive/test_set_ran.csv")
+test_df=pd.read_csv(r"/home/sushant/env/ner_bert/ner_bert/test_set_ran.csv")
 # dataframe = dataframe.drop('Unnamed: 0',axis=1)
 test_df.rename({'Unnamed: 0.1':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
 test_df

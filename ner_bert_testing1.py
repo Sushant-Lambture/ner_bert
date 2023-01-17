@@ -171,7 +171,7 @@ with strategy.scope():
 
 model.summary()
 
-tf.keras.utils.plot_model(model)
+# tf.keras.utils.plot_model(model)
 
 # # Model Training
 

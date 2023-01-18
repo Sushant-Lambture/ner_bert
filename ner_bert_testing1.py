@@ -225,23 +225,23 @@ def testing(val_input_ids,val_attention_mask,enc_tag,y_test):
 
 testing(val_input_ids[0],val_attention_mask[0],enc_tag,y_test[0])
 
-pred_with_pad = np.argmax(pred(val_input_ids,val_attention_mask),axis = -1) 
-pred_without_pad = pred_with_pad[pred_with_pad>0]
-pred_enc_tag = enc_tag.inverse_transform(pred_without_pad)
-print("Predicted Tags : ",pred_enc_tag)
-len(pred_enc_tag)
+# pred_with_pad = np.argmax(pred(val_input_ids,val_attention_mask),axis = -1) 
+# pred_without_pad = pred_with_pad[pred_with_pad>0]
+# pred_enc_tag = enc_tag.inverse_transform(pred_without_pad)
+# print("Predicted Tags : ",pred_enc_tag)
+# len(pred_enc_tag)
 
-true_with_pad = np.argmax((val_input_ids,val_attention_mask),axis = -1) 
-true_without_pad = true_with_pad[true_with_pad>0]
-true_without_pad=[2 if item== 5 or 6 or 7 or 8 or 9 or 10 or 38213 or 38215 or 38216 else item for item in true_without_pad]
-# true_without_pad=[2 if item!= 1 or 2 or 3 or 4 else item for item in true_without_pad]
-true_enc_tag = enc_tag.inverse_transform(true_without_pad)
-print("True Tags : ",true_enc_tag)
-len(true_enc_tag)
+# true_with_pad = np.argmax((val_input_ids,val_attention_mask),axis = -1) 
+# true_without_pad = true_with_pad[true_with_pad>0]
+# true_without_pad=[2 if item== 5 or 6 or 7 or 8 or 9 or 10 or 38213 or 38215 or 38216 else item for item in true_without_pad]
+# # true_without_pad=[2 if item!= 1 or 2 or 3 or 4 else item for item in true_without_pad]
+# true_enc_tag = enc_tag.inverse_transform(true_without_pad)
+# print("True Tags : ",true_enc_tag)
+# len(true_enc_tag)
 
-from sklearn.metrics import accuracy_score,classification_report,f1_score
-print(accuracy_score(true_enc_tag,pred_enc_tag))
-print(classification_report(true_enc_tag,pred_enc_tag))
+# from sklearn.metrics import accuracy_score,classification_report,f1_score
+# print(accuracy_score(true_enc_tag,pred_enc_tag))
+# print(classification_report(true_enc_tag,pred_enc_tag))
 
 
 

@@ -375,14 +375,43 @@ pred_enc_tag = enc_tag.inverse_transform(pred_without_pad)
 print("Predicted Tags : ",pred_enc_tag)
 len(pred_enc_tag)
 
+# true_with_pad = np.argmax((val_input_ids,val_attention_mask),axis = -1) 
+# true_without_pad = true_with_pad[true_with_pad>0]
+
+# # true_without_pad=[2 if item== 5 or 6 or 7 or 8 or 9 or 10 else item for item in true_without_pad]
+# true_without_pad=[2 if item== 5 or 6 or 7 or 8 or 9 or 10 or 38213 or 38215 or 38216 else item for item in true_without_pad]
+# # true_without_pad=[2 if item!= 1 or 2 or 3 or 4 else item for item in true_without_pad]
+
 true_with_pad = np.argmax((val_input_ids,val_attention_mask),axis = -1) 
 true_without_pad = true_with_pad[true_with_pad>0]
 
-# true_without_pad=[2 if item== 5 or 6 or 7 or 8 or 9 or 10 else item for item in true_without_pad]
-true_without_pad=[2 if item== 5 or 6 or 7 or 8 or 9 or 10 or 38213 or 38215 or 38216 else item for item in true_without_pad]
-# true_without_pad=[2 if item!= 1 or 2 or 3 or 4 else item for item in true_without_pad]
+for i in range(len(true_without_pad)):
+  if true_without_pad[i] == 6:
+        true_without_pad[i] = 2
 
-print(true_without_pad)
+  if true_without_pad[i] == 5:
+        true_without_pad[i] = 2
+
+  if true_without_pad[i] == 7:
+        true_without_pad[i] = 2
+
+  if true_without_pad[i] == 8:
+        true_without_pad[i] = 2
+
+  if true_without_pad[i] == 9:
+        true_without_pad[i] = 2
+
+  if true_without_pad[i] == 10:
+        true_without_pad[i] = 2
+
+  if true_without_pad[i] == 38213:
+        true_without_pad[i] = 2
+
+  if true_without_pad[i] == 38215:
+        true_without_pad[i] = 2
+
+  if true_without_pad[i] == 38216:
+        true_without_pad[i] = 2
 
 true_enc_tag = enc_tag.inverse_transform(true_without_pad)
 print("True Tags : ",true_enc_tag)
@@ -391,7 +420,3 @@ len(true_enc_tag)
 from sklearn.metrics import accuracy_score,classification_report,f1_score
 print(accuracy_score(true_enc_tag,pred_enc_tag))
 print(classification_report(true_enc_tag,pred_enc_tag))
-
-# true_enc_tag
-
-# pred_enc_tag

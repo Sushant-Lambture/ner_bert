@@ -176,7 +176,7 @@ model.summary()
 # # Model Training
 
 # early_stopping = EarlyStopping(mode='min',patience=5)
-# history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs = 1,batch_size = 10*2,callbacks = early_stopping,verbose = True)
+# history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs = 1,callbacks = early_stopping,verbose = True)
 
 early_stopping = EarlyStopping(mode='min',patience=5)
 history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),validation_data = ([val_input_ids,val_attention_mask],np.array(test_tag)),epochs = 3,batch_size = 10*2,callbacks = early_stopping,verbose = True)
@@ -302,7 +302,8 @@ def tokenize(data,max_len = MAX_LEN):
                                         padding = 'max_length',
                                         truncation=True,return_tensors = 'np')
                         
-        
+        true_without_pad=[2 if item!= 1 or 2 or 3 or 4 else item for item in true_without_pad]
+
         input_ids.append(encoded['input_ids'])
         attention_mask.append(encoded['attention_mask'])
     return np.vstack(input_ids),np.vstack(attention_mask)
@@ -378,7 +379,8 @@ len(pred_enc_tag)
 true_with_pad = np.argmax((val_input_ids,val_attention_mask),axis = -1) 
 true_without_pad = true_with_pad[true_with_pad>0]
 
-true_without_pad=[2 if item== 5 or 6 or 7 or 8 or 9 or 10 else item for item in true_without_pad]
+# true_without_pad=[2 if item== 5 or 6 or 7 or 8 or 9 or 10 else item for item in true_without_pad]
+true_without_pad=[2 if item!= 1 or 2 or 3 or 4 else item for item in true_without_pad]
 
 print(true_without_pad)
 

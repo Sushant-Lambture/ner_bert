@@ -143,11 +143,7 @@ def create_model(bert_model,max_len = MAX_LEN):
     attention_masks = tf.keras.Input(shape = (max_len,),dtype = 'int32')
     bert_output = bert_model(input_ids,attention_mask = attention_masks,return_dict =True)
     embedding = tf.keras.layers.Dropout(0.3)(bert_output["last_hidden_state"])
-    output = tf.keras.layers.Dense(17,activation = 'softmax')(embedding)ore,classification_report,f1_score
-419
-print(accuracy_score(true_enc_tag,pred_enc_tag))
-420
-print(classification_report(true_enc_tag,pred_enc_tag))
+    output = tf.keras.layers.Dense(17,activation = 'softmax')(embedding)
     model = tf.keras.models.Model(inputs = [input_ids,attention_masks],outputs = [output])
     model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.00001), loss="sparse_categorical_crossentropy", metrics=['accuracy'])
     return model

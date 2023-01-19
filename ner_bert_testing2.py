@@ -378,6 +378,8 @@ def testing(val_input_ids,val_attention_mask,enc_tag,y_test):
 
 testing(val_input_ids[0],val_attention_mask[0],enc_tag,y_test[0])
 
+
+
 pred_with_pad = np.argmax(pred(val_input_ids,val_attention_mask),axis = -1) 
 pred_without_pad = pred_with_pad[pred_with_pad>0]
 
@@ -392,6 +394,8 @@ print(pred_without_pad)
 pred_enc_tag = enc_tag.inverse_transform(pred_without_pad)
 print("Predicted Tags : ",pred_enc_tag)
 print(len(pred_enc_tag))
+
+
 
 true_with_pad = np.argmax((val_input_ids,val_attention_mask),axis = -1) 
 true_without_pad = true_with_pad[true_with_pad>0]
@@ -409,18 +413,24 @@ true_enc_tag = enc_tag.inverse_transform(true_without_pad)
 print("True Tags : ",true_enc_tag)
 print(len(true_enc_tag))
 
+
+
 from sklearn.metrics import accuracy_score,classification_report,f1_score
 print(accuracy_score(true_enc_tag,pred_enc_tag))
 print(classification_report(true_enc_tag,pred_enc_tag))
 
-# list_ones = []
-# def model(pred, actual):
-#     return  1 if pred == actual else 0
+list_ones = []
+def model(pred, actual):
+    pred=[i for i in pred_enc_tag]
+    actual=[i for i in true_enc_tag]
+    return  1 if pred[i] == actual[i] else 0
 
-# list_ones.append(model(true_enc_tag,pred_enc_tag))
+list_ones.append(model(true_enc_tag,pred_enc_tag))
 
 
-# predict_points = sum(list_ones)
-# accuracy = (predict_points)/(len(list_ones)) * 100
-# print("Accuracy == ",accuracy)
+predict_points = sum(list_ones)
+accuracy = (predict_points)/(len(list_ones)) * 100
+print("Accuracy == ",accuracy)
+
+
 

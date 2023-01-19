@@ -99,7 +99,7 @@ def tokenize(data,max_len = MAX_LEN):
 
 # splitting Data
 
-X_train,X_test,y_train,y_test = train_test_split(sentence,tag,random_state=75,test_size=0.1)
+X_train,X_test,y_train,y_test = train_test_split(sentence,tag,random_state=785,test_size=0.1)
 X_train.shape,X_test.shape,y_train.shape,y_test.shape
 
 input_ids,attention_mask = tokenize(X_train,max_len = MAX_LEN)
@@ -312,7 +312,7 @@ def tokenize(data,max_len = MAX_LEN):
 
 # splitting Data
 
-X_train,X_test,y_train,y_test = train_test_split(sentence,tag,random_state=69,test_size=0.9)
+X_train,X_test,y_train,y_test = train_test_split(sentence,tag,random_state=9,test_size=0.9)
 print(X_train.shape,X_test.shape,y_train.shape,y_test.shape)
 
 # input_ids,attention_mask = tokenize(X_train,max_len = MAX_LEN)

@@ -429,7 +429,7 @@ list_ones.append(model(true_enc_tag,pred_enc_tag))
 
 
 predict_points = sum(list_ones)
-accuracy = (predict_points)/(len(list_ones)) * 100
+accuracy = (predict_points)/(len(pred_enc_tag)) * 100
 print("Accuracy == ",accuracy)
 
 

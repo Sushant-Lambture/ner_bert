@@ -366,8 +366,15 @@ def testing(val_input_ids,val_attention_mask,enc_tag,y_test):
     print("Original Tags : " ,str(true_enc_tag))
     print("\n")
     
+    
+    
     pred_with_pad = np.argmax(pred(val_input,val_attention),axis = -1) 
     pred_without_pad = pred_with_pad[pred_with_pad>0]
+    for i in range(len(pred_without_pad)):
+        if pred_without_pad[i]!=1:
+            if pred_without_pad[i]!=2:
+                if pred_without_pad[i]!=3:
+                    pred_without_pad[i] = 2
     pred_enc_tag = enc_tag.inverse_transform(pred_without_pad)
     print("Predicted Tags : ",pred_enc_tag)
 

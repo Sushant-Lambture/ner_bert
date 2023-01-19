@@ -414,9 +414,9 @@ len(true_enc_tag)
 # print(classification_report(true_enc_tag,pred_enc_tag))
 
 list_ones = []
-def model(pred, actual):
-    for i in range(len(pred)):
-        return  1 if pred[i] == actual[i] else 0
+def model(true_enc_tag, pred_enc_tag):
+    for i in range(len(true_enc_tag)):
+        return  1 if true_enc_tag[i] == pred_enc_tag[i] else 0
 
     list_ones.append(model(true_enc_tag,pred_enc_tag))
 

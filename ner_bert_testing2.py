@@ -1,3 +1,6 @@
+# 1- train_set2.csv-fit and train
+# 2- test_set_ran.csv-accuracy
+
 import tensorflow  as tf
 # import tensorflow.compat.v1 as tf
 
@@ -13,7 +16,7 @@ print('Number of replicas:', strategy.num_replicas_in_sync)
 
 import numpy as np
 import pandas as pd
-import plotly.express as px
+import plotly.express as pxtokenize
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 
@@ -158,7 +161,7 @@ model.summary()
 # history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs = 1,batch_size = 10*2,callbacks = early_stopping,verbose = True)
 
 early_stopping = EarlyStopping(mode='min',patience=5)
-history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),validation_data = ([val_input_ids,val_attention_mask],np.array(test_tag)),epochs = 1,batch_size = 10*2,callbacks = early_stopping,verbose = True)
+history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs = 1,batch_size = 10*2,callbacks = early_stopping,verbose = True)
 
 # model.save_weights("ner_bert_weights")
 
@@ -178,7 +181,7 @@ history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),validati
 # plt.legend(['train', 'test'], loc='upper left')
 # plt.show()
 
-#Testing Model
+#Testing Model)
 
 def pred(val_input_ids,val_attention_mask):
     return model.predict([val_input_ids,val_attention_mask])
@@ -252,6 +255,8 @@ test_df
 
 test_df.Tag.unique()
 print(f"Number of Tags : {len(test_df.Tag.unique())}")#[input_ids,attention_mask]
+test_df=pd.read_csv("test_set_ran.csv")
+249
 
 # EDA
 pie = test_df['Tag'].value_counts()

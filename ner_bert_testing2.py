@@ -261,6 +261,14 @@ test_df=pd.read_csv("test_set_ran.csv")
 pie = dataframe['Tag'].value_counts()
 px.pie(names = pie.index,values= pie.values,hole = 0.5,title ='Total Count of Tags')
 
+# test_df["Sentence"] = test_df["Sentence"].fillna(method="ffill")
+# sentence = test_df.groupby("Sentence")["Word"].apply(list).values
+# # pos = dataframe.groupby(by = 'Sentence')['POS'].apply(list).values
+# tag = test_df.groupby(by = 'Sentence')['Tag'].apply(list).values
+# print(sentence)
+# print('***************************************')
+# print(tag)
+
 test_df["Sentence"] = test_df["Sentence"].fillna(method="ffill")
 sentence = test_df.groupby("Sentence")["Word"].apply(list).values
 # pos = dataframe.groupby(by = 'Sentence')['POS'].apply(list).values

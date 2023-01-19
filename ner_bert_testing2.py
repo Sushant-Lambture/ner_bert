@@ -248,190 +248,190 @@ print(classification_report(true_enc_tag,pred_enc_tag))
 
 
 
-# test_df=pd.read_csv("test_set_ran.csv")
-# # dataframe = dataframe.drop('Unnamed: 0',axis=1)
-# test_df.rename({'Unnamed: 0.1':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
-# test_df
+test_df=pd.read_csv("test_set_ran.csv")
+# dataframe = dataframe.drop('Unnamed: 0',axis=1)
+test_df.rename({'Unnamed: 0.1':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
+test_df
 
-# test_df.Tag.unique()
-# print(f"Number of Tags : {len(test_df.Tag.unique())}")#[input_ids,attention_mask]
-# test_df=pd.read_csv("test_set_ran.csv")
+test_df.Tag.unique()
+print(f"Number of Tags : {len(test_df.Tag.unique())}")#[input_ids,attention_mask]
+test_df=pd.read_csv("test_set_ran.csv")
 
-# # EDA
-# pie = test_df['Tag'].value_counts()
-# px.pie(names = pie.index,values= pie.values,hole = 0.5,title ='Total Count of Tags')
+# EDA
+pie = test_df['Tag'].value_counts()
+px.pie(names = pie.index,values= pie.values,hole = 0.5,title ='Total Count of Tags')
 
-# test_df["Sentence"] = test_df["Sentence"].fillna(method="ffill")
-# sentence = test_df.groupby("Sentence")["Word"].apply(list).values
-# # pos = dataframe.groupby(by = 'Sentence')['POS'].apply(list).values
-# tag = test_df.groupby(by = 'Sentence')['Tag'].apply(list).values
-# print(sentence)
-# print('***************************************')
-# print(tag)
+test_df["Sentence"] = test_df["Sentence"].fillna(method="ffill")
+sentence = test_df.groupby("Sentence")["Word"].apply(list).values
+# pos = dataframe.groupby(by = 'Sentence')['POS'].apply(list).values
+tag = test_df.groupby(by = 'Sentence')['Tag'].apply(list).values
+print(sentence)
+print('***************************************')
+print(tag)
 
-# def process_data(data_path):
-#     df = (data_path)#, encoding="latin-1")
-#     df.loc[:, "Sentence"] = df["Sentence"].fillna(method="ffill")
+def process_data(data_path):
+    df = (data_path)#, encoding="latin-1")
+    df.loc[:, "Sentence"] = df["Sentence"].fillna(method="ffill")
 
-# #     enc_pos = preprocessing.LabelEncoder()
-#     enc_tag = preprocessing.LabelEncoder()
+#     enc_pos = preprocessing.LabelEncoder()
+    enc_tag = preprocessing.LabelEncoder()
 
-# #     df.loc[:, "POS"] = enc_pos.fit_transform(df["POS"])
-#     df.loc[:, "Tag"] = enc_tag.fit_transform(df["Tag"])
+#     df.loc[:, "POS"] = enc_pos.fit_transform(df["POS"])
+    df.loc[:, "Tag"] = enc_tag.fit_transform(df["Tag"])
 
-#     sentences = df.groupby("Sentence")["Word"].apply(list).values
-# #     pos = df.groupby("Sentence #")["POS"].apply(list).values
-#     tag = df.groupby("Sentence")["Tag"].apply(list).values
-#     return sentences, tag, enc_tag
+    sentences = df.groupby("Sentence")["Word"].apply(list).values
+#     pos = df.groupby("Sentence #")["POS"].apply(list).values
+    tag = df.groupby("Sentence")["Tag"].apply(list).values
+    return sentences, tag, enc_tag
 
-# # sentence,tag,enc_tag = process_data('dataframe = pd.read_csv(r"C:\Users\Admin\Downloads\train_set2.csv")')
-# sentence,tag,enc_tag = process_data(test_df)
-# print(sentence)
-# print(tag)
-# print(enc_tag)
+# sentence,tag,enc_tag = process_data('dataframe = pd.read_csv(r"C:\Users\Admin\Downloads\train_set2.csv")')
+sentence,tag,enc_tag = process_data(test_df)
+print(sentence)
+print(tag)
+print(enc_tag)
 
-# tokenizer = BertTokenizerFast.from_pretrained('bert-base-uncased')
-# MAX_LEN = 10
-# def tokenize(data,max_len = MAX_LEN):
-#     input_ids = list()
-#     attention_mask = list()
-#     for i in tqdm(range(len(data))):
-#         encoded = tokenizer.encode_plus(data[i],
-#                                         add_special_tokens = True,
-#                                         max_length = MAX_LEN,
-#                                         is_split_into_words=True,
-#                                         return_attention_mask=True,
-#                                         padding = 'max_length',
-#                                         truncation=True,return_tensors = 'np')
+tokenizer = BertTokenizerFast.from_pretrained('bert-base-uncased')
+MAX_LEN = 10
+def tokenize(data,max_len = MAX_LEN):
+    input_ids = list()
+    attention_mask = list()
+    for i in tqdm(range(len(data))):
+        encoded = tokenizer.encode_plus(data[i],
+                                        add_special_tokens = True,
+                                        max_length = MAX_LEN,
+                                        is_split_into_words=True,
+                                        return_attention_mask=True,
+                                        padding = 'max_length',
+                                        truncation=True,return_tensors = 'np')
                         
         
-#         input_ids.append(encoded['input_ids'])
-#         attention_mask.append(encoded['attention_mask'])
-#     return np.vstack(input_ids),np.vstack(attention_mask)
+        input_ids.append(encoded['input_ids'])
+        attention_mask.append(encoded['attention_mask'])
+    return np.vstack(input_ids),np.vstack(attention_mask)
 
-# # splitting Data
+# splitting Data
 
-# X_train,X_test,y_train,y_test = train_test_split(sentence,tag,random_state=9,test_size=0.9)
-# print(X_train.shape,X_test.shape,y_train.shape,y_test.shape)
+X_train,X_test,y_train,y_test = train_test_split(sentence,tag,random_state=9,test_size=0.9)
+print(X_train.shape,X_test.shape,y_train.shape,y_test.shape)
 
-# input_ids,attention_mask = tokenize(X_train,max_len = MAX_LEN)
+input_ids,attention_mask = tokenize(X_train,max_len = MAX_LEN)
 
-# val_input_ids,val_attention_mask = tokenize(X_test,max_len = MAX_LEN)
+val_input_ids,val_attention_mask = tokenize(X_test,max_len = MAX_LEN)
 
-# # TEST: Checking Padding and Truncation length's
-# was = list()
-# for i in range(len(input_ids)):
-#     was.append(len(input_ids[i]))
-# set(was)
+# TEST: Checking Padding and Truncation length's
+was = list()
+for i in range(len(input_ids)):
+    was.append(len(input_ids[i]))
+set(was)
 
-# # Train Padding
-# test_tag = list()
-# for i in range(len(y_test)):
-#     test_tag.append(np.array(y_test[i] + [0] * (10-len(y_test[i]))))
+# Train Padding
+test_tag = list()
+for i in range(len(y_test)):
+    test_tag.append(np.array(y_test[i] + [0] * (10-len(y_test[i]))))
     
-# # TEST:  Checking Padding Length
-# was = list()
-# for i in range(len(test_tag)):
-#     was.append(len(test_tag[i]))
-# set(was)
+# TEST:  Checking Padding Length
+was = list()
+for i in range(len(test_tag)):
+    was.append(len(test_tag[i]))
+set(was)
 
-# # Train Padding
-# train_tag = list()
-# for i in range(len(y_train)):
-#     train_tag.append(np.array(y_train[i] + [0] * (10-len(y_train[i]))))
+# Train Padding
+train_tag = list()
+for i in range(len(y_train)):
+    train_tag.append(np.array(y_train[i] + [0] * (10-len(y_train[i]))))
     
-# # TRAIN:  Checking Padding Length
-# was = list()
-# for i in range(len(train_tag)):
-#     was.append(len(train_tag[i]))
-# set(was)
+# TRAIN:  Checking Padding Length
+was = list()
+for i in range(len(train_tag)):
+    was.append(len(train_tag[i]))
+set(was)
 
-# #Testing Model
+#Testing Model
 
-# def pred(val_input_ids,val_attention_mask):
-#     return model.predict([val_input_ids,val_attention_mask])
+def pred(val_input_ids,val_attention_mask):
+    return model.predict([val_input_ids,val_attention_mask])
 
-# def testing(val_input_ids,val_attention_mask,enc_tag,y_test):
-#     val_input = val_input_ids.reshape(1,10)
-#     val_attention = val_attention_mask.reshape(1,10)
+def testing(val_input_ids,val_attention_mask,enc_tag,y_test):
+    val_input = val_input_ids.reshape(1,10)
+    val_attention = val_attention_mask.reshape(1,10)
     
-#     # Print Original Sentence
-#     sentence = tokenizer.decode(val_input_ids[val_input_ids > 0])
-#     print("Original Text : ",str(sentence))
-#     print("\n")
-#     true_enc_tag = enc_tag.inverse_transform(y_test)
+    # Print Original Sentence
+    sentence = tokenizer.decode(val_input_ids[val_input_ids > 0])
+    print("Original Text : ",str(sentence))
+    print("\n")
+    true_enc_tag = enc_tag.inverse_transform(y_test)
 
-#     print("Original Tags : " ,str(true_enc_tag))
-#     print("\n")
+    print("Original Tags : " ,str(true_enc_tag))
+    print("\n")
     
-#     pred_with_pad = np.argmax(pred(val_input,val_attention),axis = -1) 
-#     pred_without_pad = pred_with_pad[pred_with_pad>0]
-#     for i in range(len(pred_without_pad)):
-#         if pred_without_pad[i]!=1:
-#             if pred_without_pad[i]!=2:
-#                 if pred_without_pad[i]!=3:
-#                     pred_without_pad[i] = 2
-#     pred_enc_tag = enc_tag.inverse_transform(pred_without_pad)
-#     print("Predicted Tags : ",pred_enc_tag)
+    pred_with_pad = np.argmax(pred(val_input,val_attention),axis = -1) 
+    pred_without_pad = pred_with_pad[pred_with_pad>0]
+    for i in range(len(pred_without_pad)):
+        if pred_without_pad[i]!=1:
+            if pred_without_pad[i]!=2:
+                if pred_without_pad[i]!=3:
+                    pred_without_pad[i] = 2
+    pred_enc_tag = enc_tag.inverse_transform(pred_without_pad)
+    print("Predicted Tags : ",pred_enc_tag)
 
-# testing(val_input_ids[0],val_attention_mask[0],enc_tag,y_test[0])
-
-
-
-
-# true_with_pad = np.argmax((val_input_ids,val_attention_mask),axis = -1) 
-# true_without_pad = true_with_pad[true_with_pad>0]
-# # print(true_without_pad)
-
-# for i in range(len(true_without_pad)):
-#   if true_without_pad[i]!=1:
-#     if true_without_pad[i]!=2:
-#       if true_without_pad[i]!=3:
-#         true_without_pad[i] = 2
-
-# # print(true_without_pad)
-
-# true_enc_tag = enc_tag.inverse_transform(true_without_pad)
-# print("True Tags : ",true_enc_tag)
-# print(len(true_enc_tag))
+testing(val_input_ids[0],val_attention_mask[0],enc_tag,y_test[0])
 
 
 
 
-# pred_with_pad = np.argmax(pred(val_input_ids,val_attention_mask),axis = -1) 
-# pred_without_pad = pred_with_pad[pred_with_pad>0]
+true_with_pad = np.argmax((val_input_ids,val_attention_mask),axis = -1) 
+true_without_pad = true_with_pad[true_with_pad>0]
+# print(true_without_pad)
 
-# for i in range(len(pred_without_pad)):
-#   if pred_without_pad[i]!=1:
-#     if pred_without_pad[i]!=2:
-#       if pred_without_pad[i]!=3:
-#         pred_without_pad[i] = 2
+for i in range(len(true_without_pad)):
+  if true_without_pad[i]!=1:
+    if true_without_pad[i]!=2:
+      if true_without_pad[i]!=3:
+        true_without_pad[i] = 2
 
-# # print(pred_without_pad)
+# print(true_without_pad)
 
-# pred_enc_tag = enc_tag.inverse_transform(pred_without_pad)
-# print("Predicted Tags : ",pred_enc_tag)
-# print(len(pred_enc_tag))
-
-
-
-
-# from sklearn.metrics import accuracy_score,classification_report,f1_score
-# print("Accuracy_sklearn==",accuracy_score(true_enc_tag,pred_enc_tag))
-# print(classification_report(true_enc_tag,pred_enc_tag))
-
-# correct = sum(true_enc_tag==pred_enc_tag)
-# accuracy = correct/len(pred_enc_tag)
-# print("Accuracy_cal== ",accuracy)
+true_enc_tag = enc_tag.inverse_transform(true_without_pad)
+print("True Tags : ",true_enc_tag)
+print(len(true_enc_tag))
 
 
-# # list_ones = []
-# # def model(pred, actual):
-# #     pred=[i for i in pred_enc_tag]
-# #     actual=[i for i in true_enc_tag]
-# #     return  1 if pred[i] == actual[i] else 0
 
-# # list_ones.append(model(true_enc_tag,pred_enc_tag))
+
+pred_with_pad = np.argmax(pred(val_input_ids,val_attention_mask),axis = -1) 
+pred_without_pad = pred_with_pad[pred_with_pad>0]
+
+for i in range(len(pred_without_pad)):
+  if pred_without_pad[i]!=1:
+    if pred_without_pad[i]!=2:
+      if pred_without_pad[i]!=3:
+        pred_without_pad[i] = 2
+
+# print(pred_without_pad)
+
+pred_enc_tag = enc_tag.inverse_transform(pred_without_pad)
+print("Predicted Tags : ",pred_enc_tag)
+print(len(pred_enc_tag))
+
+
+
+
+from sklearn.metrics import accuracy_score,classification_report,f1_score
+print("Accuracy_sklearn==",accuracy_score(true_enc_tag,pred_enc_tag))
+print(classification_report(true_enc_tag,pred_enc_tag))
+
+correct = sum(true_enc_tag==pred_enc_tag)
+accuracy = correct/len(pred_enc_tag)
+print("Accuracy_cal== ",accuracy)
+
+
+# list_ones = []
+# def model(pred, actual):
+#     pred=[i for i in pred_enc_tag]
+#     actual=[i for i in true_enc_tag]
+#     return  1 if pred[i] == actual[i] else 0
+
+# list_ones.append(model(true_enc_tag,pred_enc_tag))
 
 
 # # predict_points = sum(list_ones)

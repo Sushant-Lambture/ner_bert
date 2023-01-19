@@ -421,7 +421,7 @@ def model(true_enc_tag, pred_enc_tag):
     list_ones.append(model(true_enc_tag,pred_enc_tag))
 
 predict_points = sum(list_ones)
-accuracy = (predict_points)/(len(list_ones)) * 100
+accuracy = (predict_points)/(450) * 100
 print("Accuracy == ",accuracy)
 
 # list_ones=[]

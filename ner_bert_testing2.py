@@ -258,7 +258,7 @@ print(f"Number of Tags : {len(test_df.Tag.unique())}")#[input_ids,attention_mask
 test_df=pd.read_csv("test_set_ran.csv")
 
 # EDA
-pie = test_df['Tag'].value_counts()
+pie = dataframe['Tag'].value_counts()
 px.pie(names = pie.index,values= pie.values,hole = 0.5,title ='Total Count of Tags')
 
 test_df["Sentence"] = test_df["Sentence"].fillna(method="ffill")

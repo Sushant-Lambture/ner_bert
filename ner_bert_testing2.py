@@ -415,9 +415,9 @@ print(len(true_enc_tag))
 
 
 
-from sklearn.metrics import accuracy_score,classification_report,f1_score
-print(accuracy_score(true_enc_tag,pred_enc_tag))
-print(classification_report(true_enc_tag,pred_enc_tag))
+# from sklearn.metrics import accuracy_score,classification_report,f1_score
+# print(accuracy_score(true_enc_tag,pred_enc_tag))
+# print(classification_report(true_enc_tag,pred_enc_tag))
 
 list_ones = []
 def model(pred, actual):

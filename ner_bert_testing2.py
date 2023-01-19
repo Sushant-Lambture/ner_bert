@@ -16,7 +16,7 @@ print('Number of replicas:', strategy.num_replicas_in_sync)
 
 import numpy as np
 import pandas as pd
-import plotly.express as pxtokenize
+import plotly.express as px
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 

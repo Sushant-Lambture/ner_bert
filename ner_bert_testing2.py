@@ -80,7 +80,7 @@ print(tag)
 print(enc_tag)
 
 tokenizer = BertTokenizerFast.from_pretrained('bert-base-uncased')
-MAX_LEN = 128
+MAX_LEN = 10
 def tokenize(data,max_len = MAX_LEN):
     input_ids = list()
     attention_mask = list()
@@ -116,7 +116,7 @@ set(was)
 # Test Padding
 test_tag = list()
 for i in range(len(y_test)):
-    test_tag.append(np.array(y_test[i] + [0] * (128-len(y_test[i]))))
+    test_tag.append(np.array(y_test[i] + [0] * (10-len(y_test[i]))))
     
 # TEST:  Checking Padding Length
 was = list()
@@ -127,7 +127,7 @@ set(was)
 # Train Padding
 train_tag = list()
 for i in range(len(y_train)):
-    train_tag.append(np.array(y_train[i] + [0] * (128-len(y_train[i]))))
+    train_tag.append(np.array(y_train[i] + [0] * (10-len(y_train[i]))))
     
 # TRAIN:  Checking Padding Length
 was = list()
@@ -188,8 +188,8 @@ def pred(val_input_ids,val_attention_mask):
     return model.predict([val_input_ids,val_attention_mask])
 
 def testing(val_input_ids,val_attention_mask,enc_tag,y_test):
-    val_input = val_input_ids.reshape(1,128)
-    val_attention = val_attention_mask.reshape(1,128)
+    val_input = val_input_ids.reshape(1,10)
+    val_attention = val_attention_mask.reshape(1,10)
     
     # Print Original Sentence
     sentence = tokenizer.decode(val_input_ids[val_input_ids > 0])
@@ -293,7 +293,7 @@ print(tag)
 print(enc_tag)
 
 tokenizer = BertTokenizerFast.from_pretrained('bert-base-uncased')
-MAX_LEN = 128
+MAX_LEN = 10
 def tokenize(data,max_len = MAX_LEN):
     input_ids = list()
     attention_mask = list()
@@ -313,7 +313,7 @@ def tokenize(data,max_len = MAX_LEN):
 
 # splitting Data
 
-X_train,X_test,y_train,y_test = train_test_split(sentence,tag,random_state=692,test_size=0.1)
+X_train,X_test,y_train,y_test = train_test_split(sentence,tag,random_state=692,test_size=0.9)
 print(X_train.shape,X_test.shape,y_train.shape,y_test.shape)
 
 # input_ids,attention_mask = tokenize(X_train,max_len = MAX_LEN)
@@ -329,7 +329,7 @@ set(was)
 # Train Padding
 test_tag = list()
 for i in range(len(y_test)):
-    test_tag.append(np.array(y_test[i] + [0] * (128-len(y_test[i]))))
+    test_tag.append(np.array(y_test[i] + [0] * (10-len(y_test[i]))))
     
 # TEST:  Checking Padding Length
 was = list()
@@ -340,7 +340,7 @@ set(was)
 # Train Padding
 train_tag = list()
 for i in range(len(y_train)):
-    train_tag.append(np.array(y_train[i] + [0] * (128-len(y_train[i]))))
+    train_tag.append(np.array(y_train[i] + [0] * (10-len(y_train[i]))))
     
 # TRAIN:  Checking Padding Length
 was = list()
@@ -354,8 +354,8 @@ def pred(val_input_ids,val_attention_mask):
     return model.predict([val_input_ids,val_attention_mask])
 
 def testing(val_input_ids,val_attention_mask,enc_tag,y_test):
-    val_input = val_input_ids.reshape(1,128)
-    val_attention = val_attention_mask.reshape(1,128)
+    val_input = val_input_ids.reshape(1,10)
+    val_attention = val_attention_mask.reshape(1,10)
     
     # Print Original Sentence
     sentence = tokenizer.decode(val_input_ids[val_input_ids > 0])

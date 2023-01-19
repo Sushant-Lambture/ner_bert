@@ -159,7 +159,7 @@ model.summary()
 # history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs = 1,batch_size = 10*2,callbacks = early_stopping,verbose = True)
 
 early_stopping = EarlyStopping(mode='min',patience=5)
-history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),validation_data = ([val_input_ids,val_attention_mask],np.array(test_tag)),epochs = 1,batch_size = 10*2,callbacks = early_stopping,verbose = True)
+history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs = 1,batch_size = 10*2,callbacks = early_stopping,verbose = True)
 
 # model.save_weights("ner_bert_weights")
 
@@ -419,15 +419,15 @@ print(classification_report(true_enc_tag,pred_enc_tag))
 
 
 
-list_ones = []
-def model(pred, actual):
-    return  1 if pred == actual else 0
+# list_ones = []
+# def model(pred, actual):
+#     return  1 if pred == actual else 0
 
-list_ones.append(model(true_enc_tag,pred_enc_tag))
+# list_ones.append(model(true_enc_tag,pred_enc_tag))
 
 
-predict_points = sum(list_ones)
-accuracy = (predict_points)/(len(list_ones)) * 100
-print("Accuracy == ",accuracy)
+# predict_points = sum(list_ones)
+# accuracy = (predict_points)/(len(list_ones)) * 100
+# print("Accuracy == ",accuracy)
 
-pred_enc_tag
+# pred_enc_tag

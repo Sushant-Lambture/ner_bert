@@ -37,11 +37,11 @@ from sklearn.model_selection import train_test_split
 import warnings
 warnings.filterwarnings("ignore")
 
-dataframe = pd.read_csv("test_set_ran.csv")
+dataframe = pd.read_csv("train_set2.csv")
 dataframe = dataframe.dropna()
 # dataframe = dataframe.drop('Unnamed: 0',axis=1)
-dataframe.rename({'Unnamed: 0':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
-# dataframe.rename({'index':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
+# dataframe.rename({'Unnamed: 0':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
+dataframe.rename({'index':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
 dataframe
 
 dataframe.Tag.unique()
@@ -251,7 +251,7 @@ testing(val_input_ids[0],val_attention_mask[0],enc_tag,y_test[0])
 
 
 
-test_df=pd.read_csv("trail1.csv")
+test_df=pd.read_csv("test_set_ran.csv")
 # dataframe = dataframe.drop('Unnamed: 0',axis=1)
 test_df.rename({'Unnamed: 0.1':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
 test_df

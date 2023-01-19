@@ -207,7 +207,7 @@ def testing(val_input_ids,val_attention_mask,enc_tag,y_test):
         if pred_without_pad[i]!=1:
             if pred_without_pad[i]!=2:
                 if pred_without_pad[i]!=3:
-                    pred_without_pad[i] = 1
+                    pred_without_pad[i] = 2
     pred_enc_tag = enc_tag.inverse_transform(pred_without_pad)
     print("Predicted Tags : ",pred_enc_tag)
 
@@ -221,7 +221,7 @@ for i in range(len(true_without_pad)):
   if true_without_pad[i]!=1:
     if true_without_pad[i]!=2:
       if true_without_pad[i]!=3:
-        true_without_pad[i] = 1
+        true_without_pad[i] = 2
 
 print(true_without_pad)
 true_enc_tag = enc_tag.inverse_transform(true_without_pad)
@@ -236,7 +236,7 @@ for i in range(len(pred_without_pad)):
   if pred_without_pad[i]!=1:
     if pred_without_pad[i]!=2:
       if pred_without_pad[i]!=3:
-        pred_without_pad[i] = 1
+        pred_without_pad[i] = 2
 
 pred_enc_tag = enc_tag.inverse_transform(pred_without_pad)
 print("Predicted Tags : ",pred_enc_tag)
@@ -371,7 +371,7 @@ def testing(val_input_ids,val_attention_mask,enc_tag,y_test):
         if pred_without_pad[i]!=1:
             if pred_without_pad[i]!=2:
                 if pred_without_pad[i]!=3:
-                    pred_without_pad[i] = 1
+                    pred_without_pad[i] = 2
     pred_enc_tag = enc_tag.inverse_transform(pred_without_pad)
     print("Predicted Tags : ",pred_enc_tag)
 
@@ -388,7 +388,7 @@ for i in range(len(true_without_pad)):
   if true_without_pad[i]!=1:
     if true_without_pad[i]!=2:
       if true_without_pad[i]!=3:
-        true_without_pad[i] = 1
+        true_without_pad[i] = 2
 
 # print(true_without_pad)
 
@@ -406,7 +406,7 @@ for i in range(len(pred_without_pad)):
   if pred_without_pad[i]!=1:
     if pred_without_pad[i]!=2:
       if pred_without_pad[i]!=3:
-        pred_without_pad[i] = 1
+        pred_without_pad[i] = 2
 
 # print(pred_without_pad)
 

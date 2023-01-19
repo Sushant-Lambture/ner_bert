@@ -162,11 +162,15 @@ model.summary()
 # history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs = 1,batch_size = 10*2,callbacks = early_stopping,verbose = True)
 
 early_stopping = EarlyStopping(mode='min',patience=5)
-history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),validation_data = ([val_input_ids,val_attention_mask],np.array(test_tag)),epochs = 1,batch_size = 10*2,callbacks = early_stopping,verbose = True)
+history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),validation_data = ([val_input_ids,val_attention_mask],np.array(test_tag)),epochs = 5,batch_size = 10*2,callbacks = early_stopping,verbose = True)
 
 # model.save_weights("ner_bert_weights")
 
-# plt.plot(history_bert.history['accuracy'])
+# plt.plot(history_bert.history['accuracy'])ore,classification_report,f1_score
+419
+print(accuracy_score(true_enc_tag,pred_enc_tag))
+420
+print(classification_report(true_enc_tag,pred_enc_tag))
 # plt.plot(history_bert.history['val_accuracy'])
 # plt.title('model accuracy')
 # plt.ylabel('accuracy')
@@ -389,7 +393,7 @@ for i in range(len(pred_without_pad)):
       if pred_without_pad[i]!=3:
         pred_without_pad[i] = 2
 
-print(pred_without_pad)
+# print(pred_without_pad)
 
 pred_enc_tag = enc_tag.inverse_transform(pred_without_pad)
 print("Predicted Tags : ",pred_enc_tag)
@@ -407,7 +411,7 @@ for i in range(len(true_without_pad)):
       if true_without_pad[i]!=3:
         true_without_pad[i] = 2
 
-print(true_without_pad)
+# print(true_without_pad)
 
 true_enc_tag = enc_tag.inverse_transform(true_without_pad)
 print("True Tags : ",true_enc_tag)

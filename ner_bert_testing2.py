@@ -167,10 +167,6 @@ history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),validati
 # model.save_weights("ner_bert_weights")
 
 # plt.plot(history_bert.history['accuracy'])ore,classification_report,f1_score
-419
-print(accuracy_score(true_enc_tag,pred_enc_tag))
-420
-print(classification_report(true_enc_tag,pred_enc_tag))
 # plt.plot(history_bert.history['val_accuracy'])
 # plt.title('model accuracy')
 # plt.ylabel('accuracy')

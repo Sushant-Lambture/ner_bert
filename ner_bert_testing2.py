@@ -418,7 +418,7 @@ def model(pred, actual):
     for i in range(len(pred)):
         return  1 if pred[i] == actual[i] else 0
 
-list_ones.append(model(true_enc_tag,pred_enc_tag))
+    list_ones.append(model(true_enc_tag,pred_enc_tag))
 
 predict_points = sum(list_ones)
 accuracy = (predict_points)/(len(list_ones)) * 100

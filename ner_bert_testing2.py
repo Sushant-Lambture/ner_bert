@@ -350,17 +350,7 @@ set(was)
 
 #Testing Model
 
-def pred(val_input_ids,val_attention_mask):
-    return model.predict([val_input_ids,val_attention_mask])
-
-# Train Padding
-train_tag = list()
-for i in range(len(y_train)):
-    train_tag.append(np.array(y_train[i] + [0] * (10-len(y_train[i]))))
     
-# TRAIN:  Checking Padding Length
-was = list()
-for i in range(len(train_tag)):
 def testing(val_input_ids,val_attention_mask,enc_tag,y_test):
     val_input = val_input_ids.reshape(1,10)
     val_attention = val_attention_mask.reshape(1,10)

@@ -353,6 +353,14 @@ set(was)
 def pred(val_input_ids,val_attention_mask):
     return model.predict([val_input_ids,val_attention_mask])
 
+# Train Padding
+train_tag = list()
+for i in range(len(y_train)):
+    train_tag.append(np.array(y_train[i] + [0] * (10-len(y_train[i]))))
+    
+# TRAIN:  Checking Padding Length
+was = list()
+for i in range(len(train_tag)):
 def testing(val_input_ids,val_attention_mask,enc_tag,y_test):
     val_input = val_input_ids.reshape(1,10)
     val_attention = val_attention_mask.reshape(1,10)
@@ -397,7 +405,7 @@ len(pred_enc_tag)
 
 true_with_pad = np.argmax((val_input_ids,val_attention_mask),axis = -1) 
 true_without_pad = true_with_pad[true_with_pad>0]
-print(true_without_pad)
+# print(true_without_pad)
 
 for i in range(len(true_without_pad)):
   if true_without_pad[i]!=1:
@@ -405,7 +413,7 @@ for i in range(len(true_without_pad)):
       if true_without_pad[i]!=3:
         true_without_pad[i] = 2
 
-print(true_without_pad)
+# print(true_without_pad)
 
 true_enc_tag = enc_tag.inverse_transform(true_without_pad)
 print("True Tags : ",true_enc_tag)
@@ -415,16 +423,16 @@ len(true_enc_tag)
 # print(accuracy_score(true_enc_tag,pred_enc_tag))
 # print(classification_report(true_enc_tag,pred_enc_tag))
 
-list_ones = []
-def model(pred, actual):
-    for i in range(len(pred)):
-        return  1 if pred[i] == actual[i] else 0
+# list_ones = []
+# def model(pred, actual):
+#     for i in range(len(pred)):
+#         return  1 if pred[i] == actual[i] else 0
 
-list_ones.append(model(true_enc_tag,pred_enc_tag))
+# list_ones.append(model(true_enc_tag,pred_enc_tag))
 
-predict_points = sum(list_ones)
-accuracy = (predict_points)/(len(list_ones)) * 100
-print("Accuracy == ",accuracy)
+# predict_points = sum(list_ones)
+# accuracy = (predict_points)/(len(list_ones)) * 100
+# print("Accuracy == ",accuracy)
 
 # list_ones=[]
 # for i in range(len(true_enc_tag)):

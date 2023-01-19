@@ -31,9 +31,9 @@ from transformers import TFBertModel
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
 
-import torch
-import torchvision
-from torch._C import *
+# import torch
+# import torchvision
+# from torch._C import *
 import warnings
 warnings.filterwarnings("ignore")
 

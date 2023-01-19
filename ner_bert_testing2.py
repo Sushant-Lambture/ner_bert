@@ -11,8 +11,6 @@ except:
     strategy = tf.distribute.get_strategy()
 print('Number of replicas:', strategy.num_replicas_in_sync)
 
-pip install transformers
-
 import numpy as np
 import pandas as pd
 import plotly.express as px
@@ -33,9 +31,9 @@ from transformers import TFBertModel
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
 
-import torch
-import torchvision
-from torch._C import *
+# import torch
+# import torchvision
+# from torch._C import *
 import warnings
 warnings.filterwarnings("ignore")
 

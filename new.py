@@ -205,6 +205,12 @@ BATCH_SIZE = 2
 model = BertModel()
 train_loop(model, df_train, df_val)
 
+
+df_test=pd.read_csv('test_set_ran')
+df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
+# df = df.drop('index',axis=1)
+df.head()
+
 def evaluate(model, df_test):
 
     test_dataset = DataSequence(df_test)

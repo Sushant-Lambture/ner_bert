@@ -206,10 +206,12 @@ model = BertModel()
 train_loop(model, df_train, df_val)
 
 
-df_test=pd.read_csv('test_set_ran.csv')
-df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
-# df = df.drop('index',axis=1)
-df.head()
+import pandas as pd
+df_test=pd.read_csv('/home/sushant/env/files/test_set_ran.csv')
+df_test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
+df = df_test.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1,inplace=True)
+# df_test.head()
+
 
 def evaluate(model, df_test):
 

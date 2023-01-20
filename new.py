@@ -31,7 +31,7 @@ from torch.optim import SGD
 
 df = pd.read_csv("train_final.csv")
 df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
-# df = df.drop('index',axis=1)
+df = df.drop('index',axis=1)
 df.head()
 
 tokenizer = BertTokenizerFast.from_pretrained('bert-base-cased')
@@ -95,7 +95,7 @@ class DataSequence(torch.utils.data.Dataset):
         return batch_data, batch_labels
     
 
-df = df[0:10000]
+df = df[0:1000]
 
 labels = [i.split() for i in df['labels'].values.tolist()]
 unique_labels = set()

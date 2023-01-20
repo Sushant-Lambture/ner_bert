@@ -67,8 +67,7 @@ def align_label_example(tokenized_input, labels):
         
             else:
                 label_ids.append(labels_to_ids[labels[word_idx]] if label_all_tokens else -100)
-                label_ids.append(labels_to_ids[labels[word_idx]] if label_all_tokens else -100)
-70
+                
             previous_word_idx = word_idx
       
 

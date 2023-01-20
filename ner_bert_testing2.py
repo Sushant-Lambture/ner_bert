@@ -159,7 +159,7 @@ model.summary()
 # history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs = 1,batch_size = 10*2,callbacks = early_stopping,verbose = True)
 
 early_stopping = EarlyStopping(mode='min',patience=5)
-history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs = 3,batch_size = 10*2,callbacks = early_stopping,verbose = True)
+history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs =1,batch_size = 10*2,callbacks = early_stopping,verbose = True)
 
 model.save_weights("ner_bert_weights")
 
@@ -410,7 +410,6 @@ pred_enc_tag = enc_tag.inverse_transform(pred_without_pad)
 print("Predicted Tags : ",pred_enc_tag)
 len(pred_enc_tag)
 
-from sklearn.metrics import accuracy_score,classification_report,f1_score
+from sklearn.metrics import accuracy_score,classification_report
 print(accuracy_score(true_enc_tag,pred_enc_tag))
 print(classification_report(true_enc_tag,pred_enc_tag))
-print(f1_score(true_enc_tag,pred_enc_tag))

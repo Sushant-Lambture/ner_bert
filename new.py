@@ -43,7 +43,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 from torch.optim import SGD
 
-df = pd.read_csv("ner.csv")
+df = pd.read_csv("train_Set2.csv")
 df.head()
 
 tokenizer = BertTokenizerFast.from_pretrained('bert-base-cased')

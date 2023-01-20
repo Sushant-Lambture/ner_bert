@@ -304,5 +304,5 @@ def evaluate_one_text(model, sentence):
     print(sentence)
     print(prediction_label)
             
-evaluate_one_text(model, 'India sushant')
+evaluate_one_text(model, 'ajay sushant')
 

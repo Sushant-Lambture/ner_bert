@@ -75,7 +75,7 @@ def align_label_example(tokenized_input, labels):
 #If we set label_all_tokens to True.....
 label_all_tokens = True
 
-new_label = align_label_example(text_tokenized, label)
+new_label = align_label_example(text_tokenized, labels)
 print(new_label)
 print(tokenizer.convert_ids_to_tokens(text_tokenized["input_ids"][0]))
 

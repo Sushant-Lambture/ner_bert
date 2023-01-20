@@ -346,5 +346,5 @@ def evaluate_one_text(model, sentence):
             
 evaluate_one_text(model, 'Bill Gates is the founder of Microsoft')
 
->>> 'Bill Gates is the founder of Microsoft'
->>> ['B-per', 'I-per', 'O', 'O', 'O', 'O', 'B-org']
+# >>> 'Bill Gates is the founder of Microsoft'
+# >>> ['B-per', 'I-per', 'O', 'O', 'O', 'O', 'B-org']

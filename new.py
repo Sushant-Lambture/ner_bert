@@ -93,6 +93,7 @@ class DataSequence(torch.utils.data.Dataset):
         batch_labels = self.get_batch_labels(idx)
 
         return batch_data, batch_labels
+    
 
 df = df[0:1000]
 
@@ -210,7 +211,7 @@ import pandas as pd
 df_test=pd.read_csv('test_set_ran.csv')
 df_test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 df_test= df_test.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1,inplace=True)
-# df_test=df_test[:100]
+df_test=df_test[:50]
 # df_test.head()
 
 

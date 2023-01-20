@@ -248,7 +248,7 @@ def train_loop(model, df_train, df_val):
             f'Epochs: {epoch_num + 1} | Loss: {total_loss_train / len(df_train): .3f} | Accuracy: {total_acc_train / len(df_train): .3f} | Val_Loss: {total_loss_val / len(df_val): .3f} | Accuracy: {total_acc_val / len(df_val): .3f}')
 
 LEARNING_RATE = 5e-3
-EPOCHS = 5
+EPOCHS = 1
 BATCH_SIZE = 2
 
 model = BertModel()

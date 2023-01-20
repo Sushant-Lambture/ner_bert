@@ -7,10 +7,10 @@ Original file is located at
     https://colab.research.google.com/drive/1W4Ej9GS1wam61cMbULHzea9lYHP2eFV-
 """
 
-pip install transformers
+# pip install transformers
 
-from google.colab import drive
-drive.mount('/content/drive')
+# from google.colab import drive
+# drive.mount('/content/drive')
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -43,7 +43,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 from torch.optim import SGD
 
-df = pd.read_csv(r"/content/drive/MyDrive/ner.csv")
+df = pd.read_csv("ner.csv")
 df.head()
 
 tokenizer = BertTokenizerFast.from_pretrained('bert-base-cased')

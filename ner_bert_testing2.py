@@ -36,11 +36,11 @@ from sklearn.model_selection import train_test_split
 import warnings
 warnings.filterwarnings("ignore")
 
-dataframe = pd.read_csv(r"train_set2.csv")
+dataframe = pd.read_csv(r"train_final.csv")
 dataframe = dataframe.dropna()
 # dataframe = dataframe.drop('Unnamed: 0',axis=1)
-# dataframe.rename({'Unnamed: 0':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
-dataframe.rename({'index':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
+dataframe.rename({'Unnamed: 0':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
+# dataframe.rename({'index':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
 dataframe
 
 dataframe.Tag.unique()
@@ -99,7 +99,7 @@ def tokenize(data,max_len = MAX_LEN):
 
 # splitting Data
 
-X_train,X_test,y_train,y_test = train_test_split(sentence,tag,random_state=5,test_size=0.1)
+X_train,X_test,y_train,y_test = train_test_split(sentence,tag,random_state=5,test_size=0.05)
 X_train.shape,X_test.shape,y_train.shape,y_test.shape
 
 input_ids,attention_mask = tokenize(X_train,max_len = MAX_LEN)
@@ -159,7 +159,7 @@ model.summary()
 # history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs = 1,batch_size = 10*2,callbacks = early_stopping,verbose = True)
 
 early_stopping = EarlyStopping(mode='min',patience=5)
-history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs =2,batch_size = 10*2,callbacks = early_stopping,verbose = True)
+history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs =1,batch_size = 10*2,callbacks = early_stopping,verbose = True)
 
 model.save_weights("ner_bert_weights")
 
@@ -248,7 +248,7 @@ testing(val_input_ids[0],val_attention_mask[0],enc_tag,y_test[0])
 
 
 
-test_df=pd.read_csv("test_set_ran.csv")
+test_df=pd.read_csv("test_set_ran1.csv")
 # dataframe = dataframe.drop('Unnamed: 0',axis=1)
 test_df.rename({'Unnamed: 0.1':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
 test_df
@@ -318,7 +318,6 @@ X_train.shape,X_test.shape,y_train.shape,y_test.shape
 val_input_ids,val_attention_mask = tokenize(X_test,max_len = MAX_LEN)
 
 # TEST: Checking Padding and Truncation length'sprint(f1_score(true_enc_tag,pred_enc_tag))
-417
 
 was = list()
 for i in range(len(input_ids)):
@@ -413,5 +412,5 @@ print("Predicted Tags : ",pred_enc_tag)
 len(pred_enc_tag)
 
 from sklearn.metrics import accuracy_score,classification_report
-print(accuracy_score(true_enc_tag,pred_enc_tag))
-print(classification_report(true_enc_tag,pred_enc_tag))
+print(accuracy_score(true_enc_tag,pred_enc_tag[:8507]))
+print(classification_report(true_enc_tag,pred_enc_tag[:8507]))

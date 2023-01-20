@@ -414,17 +414,3 @@ len(pred_enc_tag)
 from sklearn.metrics import accuracy_score,classification_report,f1_score
 print(accuracy_score(true_enc_tag,pred_enc_tag))
 print(classification_report(true_enc_tag,pred_enc_tag)
-
-
-# list_ones = []
-# def model(pred, actual):
-#     return  1 if pred == actual else 0
-
-# list_ones.append(model(true_enc_tag,pred_enc_tag))
-
-
-# predict_points = sum(list_ones)
-# accuracy = (predict_points)/(len(list_ones)) * 100
-# print("Accuracy == ",accuracy)
-
-# pred_enc_tag

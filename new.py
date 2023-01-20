@@ -43,9 +43,9 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 from torch.optim import SGD
 
-df = pd.read_csv("train_set2.csv")
+df = pd.read_csv("train_final.csv")
 df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
-df = df.drop('index',axis=1)
+# df = df.drop('index',axis=1)
 df.head()
 
 tokenizer = BertTokenizerFast.from_pretrained('bert-base-cased')

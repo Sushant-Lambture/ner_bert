@@ -161,7 +161,7 @@ model.summary()
 early_stopping = EarlyStopping(mode='min',patience=5)
 history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs = 3,batch_size = 10*2,callbacks = early_stopping,verbose = True)
 
-# model.save_weights("ner_bert_weights")
+model.save_weights("ner_bert_weights")
 
 # plt.plot(history_bert.history['accuracy'])
 # plt.plot(history_bert.history['val_accuracy'])
@@ -377,25 +377,6 @@ testing(val_input_ids[0],val_attention_mask[0],enc_tag,y_test[0])
 
 
 
-pred_with_pad = np.argmax(pred(val_input_ids,val_attention_mask),axis = -1) 
-pred_without_pad = pred_with_pad[pred_with_pad>0]
-
-for i in range(len(pred_without_pad)):
-  if pred_without_pad[i]!=1:
-    if pred_without_pad[i]!=2:
-      if pred_without_pad[i]!=3:
-        pred_without_pad[i] = 2
-
-print(pred_without_pad)
-
-pred_enc_tag = enc_tag.inverse_transform(pred_without_pad)
-print("Predicted Tags : ",pred_enc_tag)
-len(pred_enc_tag)
-
-
-
-
-
 true_with_pad = np.argmax((val_input_ids,val_attention_mask),axis = -1) 
 true_without_pad = true_with_pad[true_with_pad>0]
 print(true_without_pad)
@@ -406,7 +387,7 @@ for i in range(len(true_without_pad)):
       if true_without_pad[i]!=3:
         true_without_pad[i] = 2
 
-print(true_without_pad)
+# print(true_without_pad)
 
 true_enc_tag = enc_tag.inverse_transform(true_without_pad)
 print("True Tags : ",true_enc_tag)
@@ -414,14 +395,25 @@ len(true_enc_tag)
 
 
 
+pred_with_pad = np.argmax(pred(val_input_ids,val_attention_mask),axis = -1) 
+pred_without_pad = pred_with_pad[pred_with_pad>0]
+
+for i in range(len(pred_without_pad)):
+  if pred_without_pad[i]!=1:
+    if pred_without_pad[i]!=2:
+      if pred_without_pad[i]!=3:
+        pred_without_pad[i] = 2
+
+# print(pred_without_pad)
+
+pred_enc_tag = enc_tag.inverse_transform(pred_without_pad)
+print("Predicted Tags : ",pred_enc_tag)
+len(pred_enc_tag)
 
 
 from sklearn.metrics import accuracy_score,classification_report,f1_score
 print(accuracy_score(true_enc_tag,pred_enc_tag))
-print(classification_report(true_enc_tag,pred_enc_tag))
-
-
-
+print(classification_report(true_enc_tag,pred_enc_tag)
 
 
 # list_ones = []

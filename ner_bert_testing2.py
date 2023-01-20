@@ -159,7 +159,7 @@ model.summary()
 # history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs = 1,batch_size = 10*2,callbacks = early_stopping,verbose = True)
 
 early_stopping = EarlyStopping(mode='min',patience=5)
-history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs =1,batch_size = 10*2,callbacks = early_stopping,verbose = True)
+history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs =2,batch_size = 10*2,callbacks = early_stopping,verbose = True)
 
 model.save_weights("ner_bert_weights")
 
@@ -317,7 +317,9 @@ X_train.shape,X_test.shape,y_train.shape,y_test.shape
 
 val_input_ids,val_attention_mask = tokenize(X_test,max_len = MAX_LEN)
 
-# TEST: Checking Padding and Truncation length's
+# TEST: Checking Padding and Truncation length'sprint(f1_score(true_enc_tag,pred_enc_tag))
+417
+
 was = list()
 for i in range(len(input_ids)):
     was.append(len(input_ids[i]))

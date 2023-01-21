@@ -109,6 +109,7 @@ df_train, df_val, df_test = np.split(df.sample(frac=1, random_state=42),
                             [int(.8 * len(df)), int(.9 * len(df))])
 
 print(df_test)
+print(len(df_test))
 
 
 class BertModel(torch.nn.Module):
@@ -210,12 +211,13 @@ model = BertModel()
 train_loop(model, df_train, df_val)
 
 
-df_test=pd.read_csv('.csv')
+df_test=pd.read_csv('test_set_ran.csv')
 df_test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 df_test= df_test.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1,inplace=True)
 df_test=df_test[:100]
 # df_test.head()
 print(df_test)
+print(len(df_test))
 
 
 

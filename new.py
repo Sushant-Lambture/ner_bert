@@ -211,15 +211,14 @@ model = BertModel()
 train_loop(model, df_train, df_val)
 
 
-df_test=pd.read_csv('test_set_ran.csv')
-df_test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
-df_test= df_test.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1,inplace=True)
-df_test=df_test[:100]
+
+test=pd.read_csv('test_set_ran.csv')
+test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
+test= df_test.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1,inplace=True)
+# test=df_test[:100]
 # df_test.head()
-print(df_test)
-print(len(df_test))
-
-
+print(test)
+print(len(test))
 
 def evaluate(model, df_test):
 
@@ -257,7 +256,7 @@ def evaluate(model, df_test):
     print(f'Test Accuracy: {total_acc_test / len(df_test): .3f}')
 
 
-evaluate(model, df_test)
+evaluate(model, test)
 
 def align_word_ids(texts):
   

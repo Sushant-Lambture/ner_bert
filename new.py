@@ -216,7 +216,8 @@ test= pd.read_csv("test_set_ran.csv")
 test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 # df = df.drop('index',axis=1)
 test = test.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1)
-test=test[0:100]
+test=test[:100]
+print(test)
 # test.head()
 
 def evaluate(model, df_test):

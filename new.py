@@ -212,13 +212,11 @@ train_loop(model, df_train, df_val)
 
 
 
-test=pd.read_csv('test_set_ran.csv')
+test= pd.read_csv("test_set_ran.csv")
 test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
-test= test.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1,inplace=True)
-# test=df_test[:100]
-# df_test.head()
-print(test)
-print(len(test))
+# df = df.drop('index',axis=1)
+test = test.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1)
+# test.head()
 
 def evaluate(model, df_test):
 

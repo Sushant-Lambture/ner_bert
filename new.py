@@ -108,6 +108,9 @@ ids_to_labels = {v: k for v, k in enumerate(unique_labels)}
 df_train, df_val, df_test = np.split(df.sample(frac=1, random_state=42),
                             [int(.8 * len(df)), int(.9 * len(df))])
 
+print(df_test)
+
+
 class BertModel(torch.nn.Module):
 
     def __init__(self):
@@ -207,11 +210,13 @@ model = BertModel()
 train_loop(model, df_train, df_val)
 
 
-df_test=pd.read_csv('trail1.csv')
+df_test=pd.read_csv('.csv')
 df_test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 df_test= df_test.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1,inplace=True)
 df_test=df_test[:100]
 # df_test.head()
+print(df_test)
+
 
 
 def evaluate(model, df_test):
@@ -305,4 +310,5 @@ def evaluate_one_text(model, sentence):
     print(prediction_label)
             
 evaluate_one_text(model, 'ajay sushant')
+
 

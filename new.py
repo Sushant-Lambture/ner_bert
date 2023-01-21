@@ -29,6 +29,9 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 from torch.optim import SGD
 
+import os
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
 df = pd.read_csv("train_set2.csv")
 df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 df = df.drop('index',axis=1)

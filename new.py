@@ -104,7 +104,7 @@ class DataSequence(torch.utils.data.Dataset):
 
         return batch_data, batch_labels
 
-df = df[:1000]
+df = df
 
 labels = [i.split() for i in df['labels'].values.tolist()]
 unique_labels = set()
@@ -366,7 +366,7 @@ def evaluate(model, d_test):
     print(f'Test Accuracy: {total_acc_test / len(d_test): .3f}')
 
 
-evaluate(model, d_test)
+evaluate(model, d_train)
 
 
 

@@ -106,7 +106,7 @@ class DataSequence(torch.utils.data.Dataset):
         return batch_data, batch_labels
     
 
-df = df[0:10000]
+df = df[0:380000]
 
 labels = [i.split() for i in df['labels'].values.tolist()]
 unique_labels = set()
@@ -584,7 +584,7 @@ def evaluate(model, df_test):
     print(f'Test Accuracy: {total_acc_test / len(df_test): .3f}')
 
 
-evaluate(model, test[:100])
+evaluate(model,test)
 
 
 def align_word_ids(texts):

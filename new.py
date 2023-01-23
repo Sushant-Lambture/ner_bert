@@ -28,9 +28,8 @@ from transformers import BertTokenizerFast, BertForTokenClassification
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 from torch.optim import SGD
-
 import os
-TOKENIZERS_PARALLELISM=False
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 df = pd.read_csv(r"train_set2.csv")
 df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
@@ -336,7 +335,9 @@ def evaluate(model, d_test):
     print(f'Test Accuracy: {total_acc_test / len(d_test): .3f}')
 
 
-evaluate(model, df_test)
+evaluate(model, test)
+
+
 
 def align_word_ids(texts):
   
@@ -390,5 +391,5 @@ def evaluate_one_text(model, sentence):
     print(sentence)
     print(prediction_label)
             
-evaluate_one_text(model, 'govind mumbai')
+evaluate_one_text(model, 'sunita')
 

@@ -232,7 +232,7 @@ test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 # df = df.drop('index',axis=1)
 # test = test.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1)
 print(test)
-# test.head()
+
 
 def evaluate(model, df_test):
 
@@ -270,7 +270,9 @@ def evaluate(model, df_test):
     print(f'Test Accuracy: {total_acc_test / len(df_test): .3f}')
 
 
-evaluate(model, test)
+evaluate(model, test[:100])
+
+
 
 def align_word_ids(texts):
   

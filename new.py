@@ -40,8 +40,8 @@ df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 
 # 2. Test dataset
 test = pd.read_csv("test_set_ran.csv")
-df = df.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1)
 test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
+df = df.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1)
 
 
 ## Data Preprocessing- TOKENIZATION

@@ -33,10 +33,11 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 
 ## DATASET
+# 1. Training Dataset
 df = pd.read_csv(r"train_set2.csv")
 df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
-# df.head()
 
+# 2. Test dataset
 test = pd.read_csv("test_set_ran.csv")
 test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 
@@ -233,101 +234,12 @@ def train_loop(model, df_train, df_val):
             f'Epochs: {epoch_num + 1} | Loss: {total_loss_train / len(df_train): .3f} | Accuracy: {total_acc_train / len(df_train): .3f} | Val_Loss: {total_loss_val / len(df_val): .3f} | Accuracy: {total_acc_val / len(df_val): .3f}')
 
 LEARNING_RATE = 5e-3
-EPOCHS = 1
+EPOCHS = 2
 BATCH_SIZE = 2
 
 model = BertModel()
 train_loop(model, df_train, df_val)
 
-
-
-# tokenizer = BertTokenizerFast.from_pretrained('bert-base-cased')
-
-# label_all_tokens = False
-
-# def align_label(texts, labels):
-#     tokenized_inputs = tokenizer(texts, padding='max_length', max_length=512, truncation=True)
-
-#     word_ids = tokenized_inputs.word_ids()
-
-#     previous_word_idx = None
-#     label_ids = []
-
-#     for word_idx in word_ids:
-
-#         if word_idx is None:
-#             label_ids.append(-100)
-
-#         elif word_idx != previous_word_idx:
-#             try:
-#                 label_ids.append(labels_to_ids[labels[word_idx]])
-#             except:
-#                 label_ids.append(-100)
-#         else:
-#             try:
-#                 label_ids.append(labels_to_ids[labels[word_idx]] if label_all_tokens else -100)
-#             except:
-#                 label_ids.append(-100)
-#         previous_word_idx = word_idx
-
-#     return label_ids
-
-# class DataSequence(torch.utils.data.Dataset):
-
-#     def __init__(self, test):
-
-#         lb = [i.split() for i in test['labels'].values.tolist()]
-#         txt = test['text'].values.tolist()
-#         self.texts = [tokenizer(str(i),
-#                                padding='max_length', max_length = 512, truncation=True, return_tensors="pt") for i in txt]
-#         self.labels = [align_label(i,j) for i,j in zip(txt, lb)]
-
-#     def __len__(self):
-
-#         return len(self.labels)
-
-#     def get_batch_data(self, idx):
-
-#         return self.texts[idx]
-
-#     def get_batch_labels(self, idx):
-
-#         return torch.LongTensor(self.labels[idx])
-
-#     def __getitem__(self, idx):
-
-#         batch_data = self.get_batch_data(idx)
-#         batch_labels = self.get_batch_labels(idx)
-
-#         return batch_data, batch_labels
-
-# # df = df[0:1000]
-# test=test[:1000]
-
-# labels = [i.split() for i in test['labels'].values.tolist()]
-# unique_labels = set()
-
-# for lb in labels:
-#         [unique_labels.add(i) for i in lb if i not in unique_labels]
-# labels_to_ids = {k: v for v, k in enumerate(unique_labels)}
-# ids_to_labels = {v: k for v, k in enumerate(unique_labels)}
-
-# d_train, d_val, d_test = np.split(test.sample(frac=1, random_state=42),
-#                             [int(.8 * len(test)), int(.9 * len(test))])
-
-# class BertModel(torch.nn.Module):
-
-#     def __init__(self):
-
-#         super(BertModel, self).__init__()
-
-#         self.bert = BertForTokenClassification.from_pretrained('bert-base-cased', num_labels=len(unique_labels))
-
-#     def forward(self, input_id, mask, label):
-
-#         output = self.bert(input_ids=input_id, attention_mask=mask, labels=label, return_dict=False)
-
-#         return output
 
 ## Evaluate Model on Test Data
 def evaluate(model, d_test):

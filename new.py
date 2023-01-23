@@ -41,8 +41,9 @@ from torch.optim import SGD
 df = pd.read_csv("train_set2.csv")
 df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 # df = df.drop(['Unnamed: 0'],axis=1)
-df = df.drop(['index'],axis=1)
+# df = df.drop(['index'],axis=1)
 # df.head()
+
 
 tokenizer = BertTokenizerFast.from_pretrained('bert-base-cased')
 
@@ -227,7 +228,13 @@ train_loop(model, df_train, df_val)
 # print(test)
 # # test.head()
 
-test= pd.read_csv("train_set2.csv")
+# test= pd.read_csv("train_set2.csv")
+# test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
+# # df = df.drop('index',axis=1)
+# # test = test.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1)
+# print(test)
+
+test= pd.read_csv("test_set_ran.csv")
 test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 # df = df.drop('index',axis=1)
 # test = test.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1)

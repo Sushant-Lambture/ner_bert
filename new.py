@@ -222,9 +222,9 @@ test = test.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1)
 print(test)
 # test.head()
 
-def evaluate(model, df_test):
+def evaluate(model, test):
 
-    test_dataset = DataSequence(df_test)
+    test_dataset = DataSequence(test)
 
     test_dataloader = DataLoader(test_dataset, num_workers=4, batch_size=1)
 
@@ -254,8 +254,8 @@ def evaluate(model, df_test):
               acc = (predictions == label_clean).float().mean()
               total_acc_test += acc
 
-    val_accuracy = total_acc_test / len(df_test)
-    print(f'Test Accuracy: {total_acc_test / len(df_test): .3f}')
+    val_accuracy = total_acc_test / len(test)
+    print(f'Test Accuracy: {total_acc_test / len(test): .3f}')
 
 
 evaluate(model, test)

@@ -30,7 +30,7 @@ from tqdm import tqdm
 from torch.optim import SGD
 
 import os
-TOKENIZERS_PARALLELISM=False
+TOKENIZERS_PARALLELISM=false
 
 df = pd.read_csv(r"train_set2.csv")
 df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
@@ -273,7 +273,7 @@ class DataSequence(torch.utils.data.Dataset):
         return batch_data, batch_labels
 
 # df = df[0:1000]
-test=test
+test=test[:1000]
 
 labels = [i.split() for i in df['labels'].values.tolist()]
 unique_labels = set()
@@ -390,5 +390,5 @@ def evaluate_one_text(model, sentence):
     print(sentence)
     print(prediction_label)
             
-evaluate_one_text(model, 'dattu mumbai')
+evaluate_one_text(model, 'govind mumbai')
 

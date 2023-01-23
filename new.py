@@ -29,9 +29,15 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 from torch.optim import SGD
 
+import os
+TOKENIZERS_PARALLELISM=(true | false)
+
 df = pd.read_csv(r"train_set2.csv")
 df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 # df.head()
+
+test = pd.read_csv("test_set_ran.csv")
+test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 
 tokenizer = BertTokenizerFast.from_pretrained('bert-base-cased')
 
@@ -240,7 +246,7 @@ def evaluate(model, df_test):
     print(f'Test Accuracy: {total_acc_test / len(df_test): .3f}')
 
 
-evaluate(model, df_test)
+evaluate(model, test)
 
 def align_word_ids(texts):
   
@@ -294,5 +300,5 @@ def evaluate_one_text(model, sentence):
     print(sentence)
     print(prediction_label)
             
-evaluate_one_text(model, 'Bill Gates is the founder of Microsoft')
+evaluate_one_text(model, 'dattu mumbai')
 

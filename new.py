@@ -38,6 +38,7 @@ df = pd.read_csv(r"train_final.csv")
 df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 # df = df.drop('index',axis=1)
 df = df.drop(['Unnamed: 0'],axis=1)
+df = df.dropna()
 
 # 2. Test dataset
 test = pd.read_csv("test_set_ran.csv")

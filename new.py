@@ -34,11 +34,13 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 ## DATASET
 # 1. Training Dataset
-df = pd.read_csv(r"train_final.csv")
+df = pd.read_csv(r"train_set2.csv")
+df = df.drop('index',axis=1)
 df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 
 # 2. Test dataset
 test = pd.read_csv("test_set_ran.csv")
+df = df.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1)
 test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 
 
@@ -105,7 +107,7 @@ class DataSequence(torch.utils.data.Dataset):
 
         return batch_data, batch_labels
 
-df = df[:10000]
+df = df[:100000]
 
 labels = [i.split() for i in df['labels'].values.tolist()]
 unique_labels = set()
@@ -234,7 +236,7 @@ def train_loop(model, df_train, df_val):
             f'Epochs: {epoch_num + 1} | Loss: {total_loss_train / len(df_train): .3f} | Accuracy: {total_acc_train / len(df_train): .3f} | Val_Loss: {total_loss_val / len(df_val): .3f} | Accuracy: {total_acc_val / len(df_val): .3f}')
 
 LEARNING_RATE = 5e-3
-EPOCHS = 2
+EPOCHS = 
 BATCH_SIZE = 2
 
 model = BertModel()
@@ -334,5 +336,5 @@ def evaluate_one_text(model, sentence):
     print(sentence)
     print(prediction_label)
             
-evaluate_one_text(model, 'sunita')
+evaluate_one_text(model, 'sushant')
 

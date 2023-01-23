@@ -258,7 +258,7 @@ def evaluate(model, test):
     print(f'Test Accuracy: {total_acc_test / len(test): .3f}')
 
 
-evaluate(model, test)
+evaluate(model, test[:100])
 
 def align_word_ids(texts):
   

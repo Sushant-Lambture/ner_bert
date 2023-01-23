@@ -283,8 +283,8 @@ for lb in labels:
 labels_to_ids = {k: v for v, k in enumerate(unique_labels)}
 ids_to_labels = {v: k for v, k in enumerate(unique_labels)}
 
-# train, val, test = np.split(df.sample(frac=1, random_state=42),
-#                             [int(.8 * len(test)), int(.9 * len(test))])
+train, val, test = np.split(test.sample(frac=1, random_state=42),
+                            [int(.8 * len(test)), int(.9 * len(test))])
 
 class BertModel(torch.nn.Module):
 
@@ -336,7 +336,7 @@ def evaluate(model, df_test):
     print(f'Test Accuracy: {total_acc_test / len(df_test): .3f}')
 
 
-evaluate(model, test[:100])
+evaluate(model, train)
 
 def align_word_ids(texts):
   

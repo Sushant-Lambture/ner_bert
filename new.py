@@ -229,7 +229,7 @@ train_loop(model, df_train, df_val)
 
 test= pd.read_csv("train_set2.csv")
 test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
-df = df.drop('index',axis=1)
+# df = df.drop('index',axis=1)
 # test = test.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1)
 print(test)
 # test.head()

@@ -325,8 +325,8 @@ def evaluate(model, df_test):
 
             for i in range(logits.shape[0]):
 
-              logits_clean = logits[i][test_label[i] #!= -100]
-              label_clean = test_label[i][test_label[i] #!= -100]
+              logits_clean = logits[i][test_label[i] ]#!= -100]
+              label_clean = test_label[i][test_label[i]] #!= -100]
 
               predictions = logits_clean.argmax(dim=1)
               acc = (predictions == label_clean).float().mean()

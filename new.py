@@ -584,7 +584,7 @@ def evaluate(model, df_test):
     print(f'Test Accuracy: {total_acc_test / len(df_test): .3f}')
 
 
-evaluate(model, test[:200])
+evaluate(model, test[:100])
 
 
 def align_word_ids(texts):
@@ -639,4 +639,4 @@ def evaluate_one_text(model, sentence):
     print(sentence)
     print(prediction_label)
             
-evaluate_one_text(model, 'solapur sushant')
+evaluate_one_text(model, 'bangalore sushant')

@@ -32,14 +32,14 @@ from torch.optim import SGD
 import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-df = pd.read_csv("test_set_ran.csv")
-df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
-df = df.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1)
-# df = df.drop('index',axis=1)
-df.head()
-
-# df = pd.read_csv("train_final.csv")
+# df = pd.read_csv("test_set_ran.csv")
 # df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
+# df = df.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1)
+# # df = df.drop('index',axis=1)
+# df.head()
+
+df = pd.read_csv("train_final.csv")
+df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 # df = df.drop('Unnamed: 0',axis=1)
 # # df = df.drop('index',axis=1)
 # df.head()
@@ -118,8 +118,6 @@ ids_to_labels = {v: k for v, k in enumerate(unique_labels)}
 df_train, df_val, df_test = np.split(df.sample(frac=1, random_state=42),
                             [int(.8 * len(df)), int(.9 * len(df))])
 
-print(df_test)
-print(len(df_test))
 
 
 class BertModel(torch.nn.Module):

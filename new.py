@@ -103,7 +103,7 @@ class DataSequence(torch.utils.data.Dataset):
 
         return batch_data, batch_labels
 
-df = df[0:10000]
+df = df[0:100000]
 
 labels = [i.split() for i in df['labels'].values.tolist()]
 unique_labels = set()
@@ -121,6 +121,22 @@ print(f'len of df_train::',len(df_train))
 print(f'len of df_test::',len(df_test))
 print(f'len of df_val::',len(df_val))
 
+
+labels = [i.split() for i in test['labels'].values.tolist()]
+unique_labels = set()
+
+for lb in labels:
+        [unique_labels.add(i) for i in lb if i not in unique_labels]
+labels_to_ids = {k: v for v, k in enumerate(unique_labels)}
+ids_to_labels = {v: k for v, k in enumerate(unique_labels)}
+
+d_train, d_val, d_test = np.split(df.sample(frac=1, random_state=42),
+                            [int(.8 * len(df)), int(.9 * len(df))])
+
+print(f'len of df::',len(test))
+print(f'len of df_train::',len(d_train))
+print(f'len of df_test::',len(d_test))
+print(f'len of df_val::',len(d_val))
 
 ## MODEL BUILDING
 class BertModel(torch.nn.Module):
@@ -216,7 +232,7 @@ def train_loop(model, df_train, df_val):
             f'Epochs: {epoch_num + 1} | Loss: {total_loss_train / len(df_train): .3f} | Accuracy: {total_acc_train / len(df_train): .3f} | Val_Loss: {total_loss_val / len(df_val): .3f} | Accuracy: {total_acc_val / len(df_val): .3f}')
 
 LEARNING_RATE = 5e-3
-EPOCHS = 2
+EPOCHS = 1
 BATCH_SIZE = 2
 
 model = BertModel()
@@ -349,7 +365,7 @@ def evaluate(model, d_test):
     print(f'Test Accuracy: {total_acc_test / len(d_test): .3f}')
 
 
-evaluate(model, df_test)
+evaluate(model, d_test)
 
 
 

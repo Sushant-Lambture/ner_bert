@@ -62,7 +62,7 @@ def align_label(texts, labels):
 
         elif word_idx != previous_word_idx:
             try:
-                label_ids.append(labels_to_ids[lab['els[word_idx]])
+                label_ids.append(labels_to_ids[labels[word_idx]])
             except:
                 label_ids.append(-100)
         else:
@@ -73,6 +73,7 @@ def align_label(texts, labels):
         previous_word_idx = word_idx
 
     return label_ids
+
 
 class DataSequence(torch.utils.data.Dataset):
 

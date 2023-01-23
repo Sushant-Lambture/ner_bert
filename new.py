@@ -30,7 +30,7 @@ from tqdm import tqdm
 from torch.optim import SGD
 
 import os
-TOKENIZERS_PARALLELISM=false
+TOKENIZERS_PARALLELISM==False
 
 df = pd.read_csv(r"train_set2.csv")
 df.rename({'word':'text','label':'labels'},axis=1,inplace=True)

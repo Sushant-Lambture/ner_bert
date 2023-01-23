@@ -32,8 +32,9 @@ from torch.optim import SGD
 import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-df = pd.read_csv("ner.csv")
-# df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
+df = pd.read_csv("test_set_ran.csv")
+df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
+test = test.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1)
 # df = df.drop('index',axis=1)
 df.head()
 
@@ -215,16 +216,16 @@ train_loop(model, df_train, df_val)
 
 
 
-test= pd.read_csv("test_set_ran.csv")
+test= pd.read_csv("trail1.csv")
 test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 # df = df.drop('index',axis=1)
 test = test.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1)
 print(test)
 # test.head()
 
-def evaluate(model, test):
+def evaluate(model, df_test):
 
-    test_dataset = DataSequence(test)
+    test_dataset = DataSequence(df_test)
 
     test_dataloader = DataLoader(test_dataset, num_workers=4, batch_size=1)
 
@@ -254,11 +255,11 @@ def evaluate(model, test):
               acc = (predictions == label_clean).float().mean()
               total_acc_test += acc
 
-    val_accuracy = total_acc_test / len(test)
-    print(f'Test Accuracy: {total_acc_test / len(test): .3f}')
+    val_accuracy = total_acc_test / len(df_test)
+    print(f'Test Accuracy: {total_acc_test / len(df_test): .3f}')
 
 
-evaluate(model, test[:100])
+evaluate(model, test)
 
 def align_word_ids(texts):
   

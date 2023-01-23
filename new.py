@@ -29,8 +29,8 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 from torch.optim import SGD
 
-# import os
-# os.environ["TOKENIZERS_PARALLELISM"] = "false"
+import os
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 # df = pd.read_csv("test_set_ran.csv")
 # df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
@@ -106,7 +106,7 @@ class DataSequence(torch.utils.data.Dataset):
         return batch_data, batch_labels
     
 
-df = df[0:1000]
+df = df[0:10000]
 
 labels = [i.split() for i in df['labels'].values.tolist()]
 unique_labels = set()
@@ -413,7 +413,7 @@ class DataSequence(torch.utils.data.Dataset):
         return batch_data, batch_labels
     
 
-test = test[0:1000]
+# test = test[0:1000]
 
 labels = [i.split() for i in df['labels'].values.tolist()]
 unique_labels = set()
@@ -639,4 +639,4 @@ def evaluate_one_text(model, sentence):
     print(sentence)
     print(prediction_label)
             
-evaluate_one_text(model, 'ajay sushant')
+evaluate_one_text(model, 'solapur sushant')

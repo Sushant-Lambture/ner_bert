@@ -62,7 +62,7 @@ def align_label(texts, labels):
 
         elif word_idx != previous_word_idx:
             try:
-                label_ids.append(labels_to_ids[labels[word_idx]])
+                label_ids.append(labels_to_ids[lab['els[word_idx]])
             except:
                 label_ids.append(-100)
         else:
@@ -120,7 +120,7 @@ print(f'len of df::',len(df))
 print(f'len of df_train::',len(df_train))
 print(f'len of df_test::',len(df_test))
 print(f'len of df_val::',len(df_val))
-
+print('************************************************')
 
 labels = [i.split() for i in test['labels'].values.tolist()]
 unique_labels = set()
@@ -133,10 +133,10 @@ ids_to_labels = {v: k for v, k in enumerate(unique_labels)}
 d_train, d_val, d_test = np.split(df.sample(frac=1, random_state=42),
                             [int(.8 * len(df)), int(.9 * len(df))])
 
-print(f'len of df::',len(test))
-print(f'len of df_train::',len(d_train))
-print(f'len of df_test::',len(d_test))
-print(f'len of df_val::',len(d_val))
+print(f'len of test::',len(test))
+print(f'len of d_train::',len(d_train))
+print(f'len of d_test::',len(d_test))
+print(f'len of d_val::',len(d_val))
 
 ## MODEL BUILDING
 class BertModel(torch.nn.Module):
@@ -365,7 +365,7 @@ def evaluate(model, d_test):
     print(f'Test Accuracy: {total_acc_test / len(d_test): .3f}')
 
 
-evaluate(model, d_test)
+evaluate(model, d_train)
 
 
 

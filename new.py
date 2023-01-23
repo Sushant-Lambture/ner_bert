@@ -104,7 +104,7 @@ class DataSequence(torch.utils.data.Dataset):
 
         return batch_data, batch_labels
 
-df = df
+df = df[:1000]
 
 labels = [i.split() for i in df['labels'].values.tolist()]
 unique_labels = set()
@@ -131,13 +131,13 @@ for lb in labels:
 labels_to_ids = {k: v for v, k in enumerate(unique_labels)}
 ids_to_labels = {v: k for v, k in enumerate(unique_labels)}
 
-d_train, d_val, d_test = np.split(test.sample(frac=1, random_state=42),
-                            [int(.8 * len(test)), int(.9 * len(test))])
+# d_train, d_val, d_test = np.split(test.sample(frac=1, random_state=42),
+#                             [int(.8 * len(test)), int(.9 * len(test))])
 
 print(f'len of test::',len(test))
-print(f'len of d_train::',len(d_train))
-print(f'len of d_test::',len(d_test))
-print(f'len of d_val::',len(d_val))
+# print(f'len of d_train::',len(d_train))
+# print(f'len of d_test::',len(d_test))
+# print(f'len of d_val::',len(d_val))
 
 ## MODEL BUILDING
 class BertModel(torch.nn.Module):

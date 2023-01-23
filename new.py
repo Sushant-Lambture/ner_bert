@@ -31,12 +31,17 @@ from torch.optim import SGD
 import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
+
+## DATASET
 df = pd.read_csv(r"train_set2.csv")
 df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 # df.head()
 
 test = pd.read_csv("test_set_ran.csv")
 test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
+
+
+## Data Preprocessing- TOKENIZATION
 
 tokenizer = BertTokenizerFast.from_pretrained('bert-base-cased')
 
@@ -112,11 +117,12 @@ df_train, df_val, df_test = np.split(df.sample(frac=1, random_state=42),
                             [int(.8 * len(df)), int(.9 * len(df))])
 
 print(f'len of df::',len(df))
-print(f'len of df::',len(df_train))
-print(f'len of df::',len(df_test))
-print(f'len of df::',len(df_val))
+print(f'len of df_train::',len(df_train))
+print(f'len of df_test::',len(df_test))
+print(f'len of df_val::',len(df_val))
 
 
+## MODEL BUILDING
 class BertModel(torch.nn.Module):
 
     def __init__(self):
@@ -130,7 +136,8 @@ class BertModel(torch.nn.Module):
         output = self.bert(input_ids=input_id, attention_mask=mask, labels=label, return_dict=False)
 
         return output
-
+    
+## TRAIN LOOP
 def train_loop(model, df_train, df_val):
 
     train_dataset = DataSequence(df_train)
@@ -305,6 +312,7 @@ train_loop(model, df_train, df_val)
 
 #         return output
 
+## Evaluate Model on Test Data
 def evaluate(model, d_test):
 
     test_dataset = DataSequence(d_test)

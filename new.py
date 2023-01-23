@@ -33,8 +33,8 @@ import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 df = pd.read_csv("ner.csv")
-df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
-df = df.drop('index',axis=1)
+# df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
+# df = df.drop('index',axis=1)
 df.head()
 
 tokenizer = BertTokenizerFast.from_pretrained('bert-base-cased')

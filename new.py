@@ -248,7 +248,7 @@ class DataSequence(torch.utils.data.Dataset):
     def __init__(self, test):
 
         lb = [i.split() for i in df['labels'].values.tolist()]
-        txt = df['text'].values.tolist()
+        txt = test['text'].values.tolist()
         self.texts = [tokenizer(str(i),
                                padding='max_length', max_length = 512, truncation=True, return_tensors="pt") for i in txt]
         self.labels = [align_label(i,j) for i,j in zip(txt, lb)]

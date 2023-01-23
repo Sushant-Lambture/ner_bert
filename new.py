@@ -341,7 +341,7 @@ def evaluate(model, d_test):
     print(f'Test Accuracy: {total_acc_test / len(d_test): .3f}')
 
 
-evaluate(model, test)
+evaluate(model, df_test)
 
 
 

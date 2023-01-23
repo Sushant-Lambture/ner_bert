@@ -283,8 +283,8 @@ for lb in labels:
 labels_to_ids = {k: v for v, k in enumerate(unique_labels)}
 ids_to_labels = {v: k for v, k in enumerate(unique_labels)}
 
-train, val, test = np.split(test.sample(frac=1, random_state=42),
-                            [int(.8 * len(test)), int(.9 * len(test))])
+# train, val, test = np.split(test.sample(frac=1, random_state=42),
+#                             [int(.8 * len(test)), int(.9 * len(test))])
 
 class BertModel(torch.nn.Module):
 
@@ -325,8 +325,8 @@ def evaluate(model, df_test):
 
             for i in range(logits.shape[0]):
 
-              logits_clean = logits[i][test_label[i] ]#!= -100]
-              label_clean = test_label[i][test_label[i]] #!= -100]
+              logits_clean = logits[i][test_label[i] != -100]
+              label_clean = test_label[i][test_label[i] != -100]
 
               predictions = logits_clean.argmax(dim=1)
               acc = (predictions == label_clean).float().mean()

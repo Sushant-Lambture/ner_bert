@@ -34,7 +34,7 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 df = pd.read_csv("test_set_ran.csv")
 df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
-test = test.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1)
+df = df.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1)
 # df = df.drop('index',axis=1)
 df.head()
 

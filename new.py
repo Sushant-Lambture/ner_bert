@@ -273,7 +273,7 @@ class DataSequence(torch.utils.data.Dataset):
         return batch_data, batch_labels
 
 # df = df[0:1000]
-# test=test[:1000]
+test=test[:1000]
 
 labels = [i.split() for i in test['labels'].values.tolist()]
 unique_labels = set()
@@ -283,8 +283,8 @@ for lb in labels:
 labels_to_ids = {k: v for v, k in enumerate(unique_labels)}
 ids_to_labels = {v: k for v, k in enumerate(unique_labels)}
 
-# train, val, test = np.split(test.sample(frac=1, random_state=42),
-#                             [int(.8 * len(test)), int(.9 * len(test))])
+d_train, d_val, d_test = np.split(test.sample(frac=1, random_state=42),
+                            [int(.8 * len(test)), int(.9 * len(test))])
 
 class BertModel(torch.nn.Module):
 
@@ -300,9 +300,9 @@ class BertModel(torch.nn.Module):
 
         return output
 
-def evaluate(model, df_test):
+def evaluate(model, d_test):
 
-    test_dataset = DataSequence(df_test)
+    test_dataset = DataSequence(d_test)
 
     test_dataloader = DataLoader(test_dataset, num_workers=4, batch_size=1)
 
@@ -332,11 +332,11 @@ def evaluate(model, df_test):
               acc = (predictions == label_clean).float().mean()
               total_acc_test += acc
 
-    val_accuracy = total_acc_test / len(df_test)
-    print(f'Test Accuracy: {total_acc_test / len(df_test): .3f}')
+    val_accuracy = total_acc_test / len(d_test)
+    print(f'Test Accuracy: {total_acc_test / len(d_test): .3f}')
 
 
-evaluate(model, test)
+evaluate(model, d_test)
 
 def align_word_ids(texts):
   

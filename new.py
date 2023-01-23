@@ -35,13 +35,13 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 ## DATASET
 # 1. Training Dataset
 df = pd.read_csv(r"train_set2.csv")
-df = df.drop('index',axis=1)
 df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
+df = df.drop('index',axis=1)
 
 # 2. Test dataset
 test = pd.read_csv("test_set_ran.csv")
 test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
-df = df.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1)
+test = test.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1)
 
 
 ## Data Preprocessing- TOKENIZATION

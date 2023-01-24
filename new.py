@@ -122,13 +122,13 @@ for lb in labels:
 labels_to_ids = {k: v for v, k in enumerate(unique_labels)}
 ids_to_labels = {v: k for v, k in enumerate(unique_labels)}
 
-df_train = np.split(df.sample(frac=1, random_state=42)
-#                             [int(.8 * len(df)), int(.9 * len(df))])
+df_train, df_val = np.split(df.sample(frac=1, random_state=42)
+#                             [int(.8 * len(df))])
 
 print(f'len of df::',len(df))
 print(f'len of df_train::',len(df_train))
 # print(f'len of df_test::',len(df_test))
-# print(f'len of df_val::',len(df_val))
+print(f'len of df_val::',len(df_val))
 print('************************************************')
 
 labels = [i.split() for i in test['labels'].values.tolist()]

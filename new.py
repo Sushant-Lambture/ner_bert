@@ -34,10 +34,10 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 ## DATASET
 # 1. Training Dataset
-df = pd.read_csv(r"train_final.csv")
+df = pd.read_csv(r"train_set2.csv")
 df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
-# df = df.drop('index',axis=1)
-df = df.drop(['Unnamed: 0'],axis=1)
+df = df.drop('index',axis=1)
+# df = df.drop(['Unnamed: 0'],axis=1)
 df = df[['text','labels']].apply(lambda x: x.str.strip()).replace('', np.nan)
 df = df.dropna()
 # df["text"].fillna("sddtytfgcfchgf", inplace = True)
@@ -112,7 +112,7 @@ class DataSequence(torch.utils.data.Dataset):
 
         return batch_data, batch_labels
 
-df = df[:150000]
+# df = df[:150000]
 
 labels = [i.split() for i in df['labels'].values.tolist()]
 unique_labels = set()

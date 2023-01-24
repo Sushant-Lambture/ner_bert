@@ -38,8 +38,9 @@ df = pd.read_csv(r"train_final.csv")
 df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 # df = df.drop('index',axis=1)
 df = df.drop(['Unnamed: 0'],axis=1)
-# df = df.dropna()
-df["text"].fillna("sddtytfgcfchgf", inplace = True)
+df = df[['text','labels']].apply(lambda x: x.str.strip()).replace('', 'abcdrtyhg')
+df = df.dropna()
+# df["text"].fillna("sddtytfgcfchgf", inplace = True)
 
 
 # 2. Test dataset
@@ -111,7 +112,7 @@ class DataSequence(torch.utils.data.Dataset):
 
         return batch_data, batch_labels
 
-df = df[:125000]
+df = df[:300000]
 
 labels = [i.split() for i in df['labels'].values.tolist()]
 unique_labels = set()

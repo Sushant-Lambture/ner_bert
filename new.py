@@ -40,7 +40,7 @@ df = df.drop('index',axis=1)
 # df = df.drop(['Unnamed: 0'],axis=1)
 df = df[['text','labels']].apply(lambda x: x.str.strip()).replace('', np.nan)
 df = df.fillna(method="ffill")
-# df = df.dropna()
+df = df.dropna()
 # df["text"].fillna("sddtytfgcfchgf", inplace = True)
 
 

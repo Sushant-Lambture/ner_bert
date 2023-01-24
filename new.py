@@ -239,7 +239,7 @@ def train_loop(model, df_train, df_val):
 
 LEARNING_RATE = 5e-3
 EPOCHS = 1
-BATCH_SIZE = 50
+BATCH_SIZE = 2
 
 model = BertModel()
 train_loop(model, df_train, df_val)

@@ -145,7 +145,8 @@ ids_to_labels = {v: k for v, k in enumerate(unique_labels)}
 # d_train, d_val, d_test = np.split(test.sample(frac=1, random_state=42),
 #                             [int(.8 * len(test)), int(.9 * len(test))])
 
-print(f'len of test::',len(test))
+
+# print(f'len of test::',len(test))
 # print(f'len of d_train::',len(d_train))
 # print(f'len of d_test::',len(d_test))
 # print(f'len of d_val::',len(d_val))

@@ -34,10 +34,10 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 ## DATASET
 # 1. Training Dataset
-df = pd.read_csv(r"train_set2.csv")
+df = pd.read_csv(r"train_final.csv")
 df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
-df = df.drop('index',axis=1)
-# df = df.drop(['Unnamed: 0'],axis=1)
+# df = df.drop('index',axis=1)
+df = df.drop(['Unnamed: 0'],axis=1)
 df = df[['text','labels']].apply(lambda x: x.str.strip()).replace('', np.nan)
 df = df.dropna()
 # df["text"].fillna("sddtytfgcfchgf", inplace = True)
@@ -112,7 +112,7 @@ class DataSequence(torch.utils.data.Dataset):
 
         return batch_data, batch_labels
 
-# df = df[:150000]
+df = df[:1000]
 
 labels = [i.split() for i in df['labels'].values.tolist()]
 unique_labels = set()
@@ -122,13 +122,13 @@ for lb in labels:
 labels_to_ids = {k: v for v, k in enumerate(unique_labels)}
 ids_to_labels = {v: k for v, k in enumerate(unique_labels)}
 
-df_train, df_val, df_test = np.split(df.sample(frac=1, random_state=42),
-                            [int(.8 * len(df)), int(.9 * len(df))])
+df_train = np.split(df.sample(frac=1, random_state=42)
+#                             [int(.8 * len(df)), int(.9 * len(df))])
 
 print(f'len of df::',len(df))
 print(f'len of df_train::',len(df_train))
-print(f'len of df_test::',len(df_test))
-print(f'len of df_val::',len(df_val))
+# print(f'len of df_test::',len(df_test))
+# print(f'len of df_val::',len(df_val))
 print('************************************************')
 
 labels = [i.split() for i in test['labels'].values.tolist()]
@@ -341,5 +341,5 @@ def evaluate_one_text(model, sentence):
     print(sentence)
     print(prediction_label)
             
-evaluate_one_text(model, 'sushant')
+evaluate_one_text(model, 'sushant mumbai abcd india')
 

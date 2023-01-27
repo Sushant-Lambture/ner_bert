@@ -40,7 +40,7 @@ df = df.drop(['Unnamed: 0'],axis=1)
 # Replace Blank values with DataFrame.replace() methods.
 df = df.replace(r'^\s*$', np.nan, regex=True)
 df = df.dropna()
-df = df.reset_index(drop = True)
+# df = df.reset_index(drop = True)
 print(df[187490:187499])
 
 # # 1. Training Dataset

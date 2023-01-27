@@ -141,7 +141,7 @@ df_train, df_val,df_test = np.split(df.sample(frac=1, random_state=42),
 
 print(f'len of df::',len(df))
 print(f'len of df_train::',len(df_train))
-# print(f'len of df_test::',len(df_test))
+print(f'len of df_test::',len(df_test))
 print(f'len of df_val::',len(df_val))
 print('************************************************')
 

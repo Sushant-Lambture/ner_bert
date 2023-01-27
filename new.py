@@ -39,8 +39,9 @@ df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 df = df.drop('index',axis=1)
 # df = df.drop(['Unnamed: 0'],axis=1)
 df = df[['text','labels']].apply(lambda x: x.str.strip()).replace('', np.nan)
-df = df.fillna(method="ffill")
+# df = df.fillna(method="ffill")
 df = df.dropna()
+print(df[187490:187499])
 
 
 # 2. Test dataset

@@ -34,8 +34,9 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 ## DATASET
 df = pd.read_csv(r"final2.csv")
-df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
+# df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 # df = df.drop(['Unnamed: 0'],axis=1)
+print(df)
 
 # Replace Blank values with DataFrame.replace() methods.
 # df = df.replace(r'^\s*$', np.nan, regex=True)

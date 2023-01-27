@@ -33,15 +33,25 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 
 ## DATASET
-# 1. Training Dataset
-df = pd.read_csv(r"train_set2.csv")
+df = pd.read_csv(r"train_final.csv")
 df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
-df = df.drop('index',axis=1)
-# df = df.drop(['Unnamed: 0'],axis=1)
-df = df[['text','labels']].apply(lambda x: x.str.strip()).replace('', np.nan)
-# df = df.fillna(method="ffill")
+df = df.drop(['Unnamed: 0'],axis=1)
+
+# Replace Blank values with DataFrame.replace() methods.
+df = df.replace(r'^\s*$', np.nan, regex=True)
 df = df.dropna()
+df = df.reset_index(drop = True)
 print(df[187490:187499])
+
+# # 1. Training Dataset
+# df = pd.read_csv(r"train_set2.csv")
+# df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
+# df = df.drop('index',axis=1)
+# # df = df.drop(['Unnamed: 0'],axis=1)
+# df = df[['text','labels']].apply(lambda x: x.str.strip()).replace('', np.nan)
+# # df = df.fillna(method="ffill")
+# df = df.dropna()
+# print(df[187490:187499])
 
 
 # 2. Test dataset

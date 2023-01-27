@@ -136,8 +136,8 @@ ids_to_labels = {v: k for v, k in enumerate(unique_labels)}
 # df_train, df_val,df_test = np.split(df.sample(frac=1, random_state=42),
 #                             [int(.8 * len(df)), int(.9 * len(df))])
 
-df_train, df_val = np.split(df.sample(frac=1, random_state=42),
-                            [int(.99* len(df))])
+df_train, df_val,df_test = np.split(df.sample(frac=1, random_state=42),
+                            [int(.99* len(df))],[int(.99* len(df))])
 
 print(f'len of df::',len(df))
 print(f'len of df_train::',len(df_train))

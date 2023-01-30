@@ -9,12 +9,13 @@ import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 # For example, running this (by clicking run or pressing Shift+Enter) will list the files in the input directory
 
 import os
-print(os.listdir("../input"))
+# print(os.listdir("../input"))
 
 # Any results you write to the current directory are saved as output.
 from tqdm import tqdm, trange
 
-input_data = pd.read_csv("../input/ner_dataset.csv", encoding="latin1")
+input_data = pd.read_csv("train_set2.csv", encoding="latin1")
+input_data.rename({'index':'Sentence #','word':'Word','label':'Tag'},axis=1,inplace=True)
 input_data = input_data.fillna(method="ffill")
 input_data.tail(10)
 
@@ -32,7 +33,6 @@ class RetrieveSentance(object):
         self.data = data
         self.empty = False
         function = lambda s: [(w, p, t) for w, p, t in zip(s["Word"].values.tolist(),
-                                                           s["POS"].values.tolist(),
                                                            s["Tag"].values.tolist())]
         self.grouped = self.data.groupby("Sentence #").apply(function)
         self.sentences = [s for s in self.grouped]
@@ -148,6 +148,8 @@ else:
     optimizer_grouped_parameters = [{"params": [p for n, p in param_optimizer]}]
 optimizer = Adam(optimizer_grouped_parameters, lr=3e-5)
 
+
+
 from seqeval.metrics import f1_score
 
 def flat_accuracy(preds, labels):
@@ -156,7 +158,7 @@ def flat_accuracy(preds, labels):
     return np.sum(pred_flat == labels_flat) / len(labels_flat)
   
   
-epochs = 5
+epochs = 1
 max_grad_norm = 1.0
 
 for _ in trange(epochs, desc="Epoch"):

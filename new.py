@@ -173,7 +173,7 @@ class BertModel(torch.nn.Module):
 ## TRAIN LOOP
 def train_loop(model, df_train, df_val):
 
-    train_dataset = DataSequence(df_train)
+    train_dataset = DataSequence(df_train,'padding=True','truncation=True')
     val_dataset = DataSequence(df_val)
 
     train_dataloader = DataLoader(train_dataset, num_workers=4, batch_size=BATCH_SIZE, shuffle=True)

@@ -33,7 +33,7 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 
 ## TRAINING DATASET
-df = pd.read_csv(r"final2.csv")
+df = pd.read_csv(r"final.csv")
 # df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 df = df.drop(['Unnamed: 0'],axis=1)
 print(df)
@@ -124,7 +124,7 @@ class DataSequence(torch.utils.data.Dataset):
 
         return batch_data, batch_labels
 
-df = df[:150000]
+df = df[:250000]
 
 labels = [i.split() for i in df['labels'].values.tolist()]
 unique_labels = set()
@@ -349,5 +349,5 @@ def evaluate_one_text(model, sentence):
     print(sentence)
     print(prediction_label)
             
-evaluate_one_text(model, 'sushant mumbai abcd india')
+evaluate_one_text(model, 'mumbai')
 

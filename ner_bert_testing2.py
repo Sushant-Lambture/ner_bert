@@ -36,11 +36,11 @@ from sklearn.model_selection import train_test_split
 import warnings
 warnings.filterwarnings("ignore")
 
-dataframe = pd.read_csv(r"train_final.csv")
+dataframe = pd.read_csv(r"train_set2.csv")
 dataframe = dataframe.dropna()
 # dataframe = dataframe.drop('Unnamed: 0',axis=1)
-dataframe.rename({'Unnamed: 0':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
-# dataframe.rename({'index':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
+# dataframe.rename({'Unnamed: 0':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
+dataframe.rename({'index':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
 dataframe
 
 dataframe.Tag.unique()
@@ -316,7 +316,7 @@ X_train.shape,X_test.shape,y_train.shape,y_test.shape
 
 val_input_ids,val_attention_mask = tokenize(X_test,max_len = MAX_LEN)
 
-# TEST: Checking Padding and Truncation length'sprint(f1_score(true_enc_tag,pred_enc_tag))
+# TEST: Checking Padding and Truncation length's
 
 was = list()
 for i in range(len(input_ids)):

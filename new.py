@@ -32,7 +32,7 @@ import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 
-## DATASET
+## TRAINING DATASET
 df = pd.read_csv(r"final2.csv")
 # df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 df = df.drop(['Unnamed: 0'],axis=1)
@@ -124,7 +124,7 @@ class DataSequence(torch.utils.data.Dataset):
 
         return batch_data, batch_labels
 
-df = df[:150000]
+df = df
 
 labels = [i.split() for i in df['labels'].values.tolist()]
 unique_labels = set()
@@ -249,8 +249,8 @@ def train_loop(model, df_train, df_val):
             f'Epochs: {epoch_num + 1} | Loss: {total_loss_train / len(df_train): .3f} | Accuracy: {total_acc_train / len(df_train): .3f} | Val_Loss: {total_loss_val / len(df_val): .3f} | Accuracy: {total_acc_val / len(df_val): .3f}')
 
 LEARNING_RATE = 5e-3
-EPOCHS = 2
-BATCH_SIZE = 2
+EPOCHS = 1
+BATCH_SIZE = 50
 
 model = BertModel()
 train_loop(model, df_train, df_val)

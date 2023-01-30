@@ -48,7 +48,7 @@ Sentences_list = [" ".join([s[0] for s in sent]) for sent in Sentences.sentences
 Sentences_list[0]
 len(Sentences_list) #number of sentences 
 
-labels = [[s[2] for s in sent] for sent in Sentences.sentences]
+labels = [[s[1] for s in sent] for sent in Sentences.sentences]
 print(labels[0])
 
 labels [0] # list of lists of dimension (sentences,labels)

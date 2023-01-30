@@ -178,7 +178,7 @@ def train_loop(model, df_train, df_val):
     val_dataset = DataSequence(df_val)
 
     train_dataloader = DataLoader(train_dataset, num_workers=4, batch_size=BATCH_SIZE, shuffle=True,truncation=True)
-    val_dataloader = DataLoader(val_dataset, num_workers=4, batch_size=BATCH_SIZE,shuffle=True, truncation=True)
+    val_dataloader = DataLoader(val_dataset, num_workers=4, batch_size=BATCH_SIZE)
 
     use_cuda = torch.cuda.is_available()
     device = torch.device("cuda" if use_cuda else "cpu")

@@ -1,5 +1,7 @@
 import warnings
 warnings.filterwarnings('ignore')
+import torch
+torch.cuda.empty_cache()
 
 import numpy as np
 import pandas as pd

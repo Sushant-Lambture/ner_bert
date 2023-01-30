@@ -3,9 +3,7 @@ warnings.filterwarnings('ignore')
 
 import torch
 torch.cuda.empty_cache()
-import gc
-del variables
-gc.collect()
+
 torch.cuda.memory_summary(device=None, abbreviated=False)
 
 import numpy as np

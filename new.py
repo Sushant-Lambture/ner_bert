@@ -1,11 +1,6 @@
 import warnings
 warnings.filterwarnings('ignore')
 
-import torch
-torch.cuda.empty_cache()
-
-torch.cuda.memory_summary(device=None, abbreviated=False)
-
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -130,7 +125,7 @@ class DataSequence(torch.utils.data.Dataset):
 
         return batch_data, batch_labels
 
-df = df[:150000]
+df = df[:370000]
 
 labels = [i.split() for i in df['labels'].values.tolist()]
 unique_labels = set()
@@ -256,7 +251,7 @@ def train_loop(model, df_train, df_val):
 
 LEARNING_RATE = 5e-3
 EPOCHS = 2
-BATCH_SIZE = 100
+BATCH_SIZE = 2
 
 model = BertModel()
 train_loop(model, df_train, df_val)

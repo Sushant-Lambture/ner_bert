@@ -1,7 +1,3 @@
-# This Python 3 environment comes with many helpful analytics libraries installed
-# It is defined by the kaggle/python docker image: https://github.com/kaggle/docker-python
-# For example, here's several helpful packages to load in 
-
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 
@@ -32,7 +28,7 @@ class RetrieveSentance(object):
         self.n_sent = 1
         self.data = data
         self.empty = False
-        function = lambda s: [(w, p, t) for w, p, t in zip(s["Word"].values.tolist(),
+        function = lambda s: [(w, t) for w, t in zip(s["Word"].values.tolist(),
                                                            s["Tag"].values.tolist())]
         self.grouped = self.data.groupby("Sentence #").apply(function)
         self.sentences = [s for s in self.grouped]

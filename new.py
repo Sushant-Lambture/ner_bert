@@ -102,7 +102,7 @@ class DataSequence(torch.utils.data.Dataset):
         lb = [i.split() for i in df['labels'].values.tolist()]
         txt = df['text'].values.tolist()
         self.texts = [tokenizer(str(i),
-                               padding='max_length', max_length = 512, truncation=True, return_tensors="pt") for i in txt]
+                               padding=True, max_length = 512, truncation=True, return_tensors="pt") for i in txt]
         self.labels = [align_label(i,j) for i,j in zip(txt, lb)]
 
     def __len__(self):
@@ -173,7 +173,7 @@ class BertModel(torch.nn.Module):
 ## TRAIN LOOP
 def train_loop(model, df_train, df_val):
 
-    train_dataset = DataSequence(df_train,padding=True,truncation=True)
+    train_dataset = DataSequence(df_train)
     val_dataset = DataSequence(df_val)
 
     train_dataloader = DataLoader(train_dataset, num_workers=4, batch_size=BATCH_SIZE, shuffle=True)

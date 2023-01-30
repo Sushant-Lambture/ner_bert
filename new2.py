@@ -90,7 +90,7 @@ print(tokenized_texts[1])
 X = pad_sequences([tokenizer.convert_tokens_to_ids(txt) for txt in tokenized_texts],
                           maxlen=max_seq_len, dtype="long", truncating="post", padding="post")
 Y = pad_sequences([[tag2idx.get(l) for l in lab] for lab in labels],
-                     maxlen=max_seq_len, value=tag2idx["O"], padding="post",
+                     maxlen=max_seq_len, value=tag2idx[O], padding="post",
                      dtype="long", truncating="post")
 
 print(X)

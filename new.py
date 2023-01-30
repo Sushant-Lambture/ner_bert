@@ -124,7 +124,7 @@ class DataSequence(torch.utils.data.Dataset):
 
         return batch_data, batch_labels
 
-df = df
+df = df[:180000]
 
 labels = [i.split() for i in df['labels'].values.tolist()]
 unique_labels = set()

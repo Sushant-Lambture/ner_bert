@@ -38,7 +38,7 @@ warnings.filterwarnings("ignore")
 
 # dataframe = pd.read_csv(r"/home/sushant/env/ner_bert/ner_bert/train_final.csv")
 # dataframe = pd.read_csv("train_final.csv")
-# dataframe = pd.read_csv("final.csv")
+dataframe = pd.read_csv("final.csv")
 
 # dataframe = dataframe.dropna()
 # dataframe = dataframe.drop('Unnamed: 0',axis=1)

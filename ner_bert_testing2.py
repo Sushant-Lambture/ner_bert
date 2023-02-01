@@ -36,7 +36,7 @@ from sklearn.model_selection import train_test_split
 import warnings
 warnings.filterwarnings("ignore")
 
-dataframe = pd.read_csv(r"train_trail1.csv")
+dataframe = pd.read_csv(r"trail1.csv")
 dataframe = dataframe.dropna()
 # dataframe = dataframe.drop('Unnamed: 0',axis=1)
 # dataframe.rename({'Unnamed: 0':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)

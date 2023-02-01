@@ -32,31 +32,15 @@ import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 
-## TRAINING DATASET
+## 1. TRAINING DATASET
 df = pd.read_csv(r"final2.csv")
 # df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 df = df.drop(['Unnamed: 0'],axis=1)
 print(df)
 print(len(df))
 
-# Replace Blank values with DataFrame.replace() methods.
-# df = df.replace(r'^\s*$', np.nan, regex=True)
-# df = df.dropna()
-# df = df.reset_index(drop = True)
-# print(df[187490:187499])
 
-# # 1. Training Dataset
-# df = pd.read_csv(r"train_set2.csv")
-# df.rename({'word':'text','label':'labels'},axis=1,inplace=True)
-# df = df.drop('index',axis=1)
-# df = df.drop(['Unnamed: 0'],axis=1)
-# df = df[['text','labels']].apply(lambda x: x.str.strip()).replace('', np.nan)
-# # df = df.fillna(method="ffill")
-# df = df.dropna()
-# print(df[187490:187499])
-
-
-# 2. Test dataset
+# 2. TEST DATASET
 test = pd.read_csv("test_set_ran.csv")
 test.rename({'word':'text','label':'labels'},axis=1,inplace=True)
 test = test.drop(['Unnamed: 0.1','Unnamed: 0'],axis=1)
@@ -126,8 +110,8 @@ class DataSequence(torch.utils.data.Dataset):
         return batch_data, batch_labels
 
 # df = df[:370000]
-df=df[:10000]
-# df=df[:150000]
+# df=df[:180000]
+df=df[:150000]
 
 labels = [i.split() for i in df['labels'].values.tolist()]
 unique_labels = set()

@@ -36,7 +36,7 @@ from sklearn.model_selection import train_test_split
 import warnings
 warnings.filterwarnings("ignore")
 
-dataframe = pd.read_csv(r"train_set2.csv")
+dataframe = pd.read_csv(r"train_trail1.csv")
 dataframe = dataframe.dropna()
 # dataframe = dataframe.drop('Unnamed: 0',axis=1)
 # dataframe.rename({'Unnamed: 0':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
@@ -241,8 +241,9 @@ print("True Tags : ",true_enc_tag)
 len(true_enc_tag)
 
 from sklearn.metrics import accuracy_score,classification_report,f1_score
-print(accuracy_score(true_enc_tag,pred_enc_tag[:19108]))
-print(classification_report(true_enc_tag,pred_enc_tag[:19108]))
+# print(accuracy_score(true_enc_tag,pred_enc_tag[:19108]))
+# print(classification_report(true_enc_tag,pred_enc_tag[:19108]))
+print(accuracy_score(true_enc_tag,pred_enc_tag))
 
 
 
@@ -411,5 +412,6 @@ print("Predicted Tags : ",pred_enc_tag)
 len(pred_enc_tag)
 
 from sklearn.metrics import accuracy_score,classification_report
-print(accuracy_score(true_enc_tag,pred_enc_tag[:8507]))
-print(classification_report(true_enc_tag,pred_enc_tag[:8507]))
+# print(accuracy_score(true_enc_tag,pred_enc_tag[:8507]))
+# print(classification_report(true_enc_tag,pred_enc_tag[:8507]))
+print(accuracy_score(true_enc_tag,pred_enc_tag))

@@ -58,9 +58,8 @@ tag2idx = {t: i for i, t in enumerate(tags2vals)}
 
 print(f"tag2vlas::",tags2vals) # 17 kinds of tags 
 
-print(f'tag2idx::',tag2idx # indexing the tag 
-
-
+print(f'tag2idx::',tag2idx) # indexing the tag
+      
 import torch
 from torch.optim import Adam
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler

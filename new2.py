@@ -10,17 +10,16 @@ import os
 # Any results you write to the current directory are saved as output.
 from tqdm import tqdm, trange
 
-input_data = pd.read_csv("train_set2.csv", encoding="latin1")
-input_data.rename({'index':'Sentence #','word':'Word','label':'Tag'},axis=1,inplace=True)
+input_data = pd.read_csv(r"final2.csv")
+input_data.rename({'Unnamed: 0':'Sentence #','text':'Word','labels':'Tag'},axis=1,inplace=True)
 input_data = input_data.fillna(method="ffill")
-input_data.tail(10)
+print(input_data)
 
 words_list = list(set(input_data["Word"].values))
-words_list[:10]
+print(words_list[:10])
 
 number_words = len(words_list); number_words # number of unique words in the corpus
-
-
+print(number_words)
 
 class RetrieveSentance(object):
     
@@ -57,9 +56,9 @@ labels [0] # list of lists of dimension (sentences,labels)
 tags2vals = list(set(input_data["Tag"].values))
 tag2idx = {t: i for i, t in enumerate(tags2vals)}
 
-tags2vals # 17 kinds of tags 
+print(f"tag2vlas::",tags2vals) # 17 kinds of tags 
 
-tag2idx # indexing the tag 
+print(f'tag2idx::',tag2idx # indexing the tag 
 
 
 import torch
@@ -89,9 +88,14 @@ print(tokenized_texts[1])
 
 X = pad_sequences([tokenizer.convert_tokens_to_ids(txt) for txt in tokenized_texts],
                           maxlen=max_seq_len, dtype="long", truncating="post", padding="post")
-Y = pad_sequences([[tag2idx.get(l) for l in lab] for lab in labels],
-                     maxlen=max_seq_len, value=tag2idx["1"], padding="post",
-                     dtype="long", truncating="post")
+
+# Y = pad_sequences([[tag2idx.get(l) for l in lab] for lab in labels],
+#                      maxlen=max_seq_len, value=tag2idx["1"], padding="post",
+#                      dtype="long", truncating="post")
+
+Y = pad_sequences([[tag2idx.get('country' or 'location' or 'other' or 'person' ) for l in lab] for lab in labels],
+                     maxlen=max_seq_len, value=tag2idx.get('country' or 'location' or 'other' or 'person' ),
+                     dtype="long", truncating="post",padding="post")
 
 print(X)
 print(Y)

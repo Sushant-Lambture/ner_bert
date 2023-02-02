@@ -187,7 +187,7 @@ loaded_model.load_weights("model.h5")
 print("Loaded model from disk")
 
 # evaluate loaded model on test data
-loaded_model.compile(loss='binary_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
+loaded_model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.00001), loss="sparse_categorical_crossentropy", metrics=['accuracy'])
 score = loaded_model.evaluate(X, Y, verbose=0)
 print("%s: %.2f%%" % (loaded_model.metrics_names[1], score[1]*100))
 

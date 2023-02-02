@@ -46,7 +46,7 @@ dataframe = pd.read_csv("final.csv")
 dataframe.rename({'Unnamed: 0':'Sentence','text':'Word','labels':'Tag'},axis=1,inplace=True)
 # dataframe.rename({'Unnamed: 0':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
 # dataframe.rename({'index':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
-dataframe
+dataframe=dataframe[:100]
 
 dataframe.Tag.unique()
 print(f"Number of Tags : {len(dataframe.Tag.unique())}")
@@ -168,7 +168,16 @@ model.summary()
 early_stopping = EarlyStopping(mode='min',patience=5)
 history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),validation_data = ([val_input_ids,val_attention_mask],np.array(test_tag)),epochs = 1,batch_size=10*2,callbacks = early_stopping,verbose = True)
 
-model.save_weights("ner_bert_weights")
+# serialize model to YAML
+model_yaml = model.to_yaml()
+with open("model.yaml", "w") as yaml_file:
+    yaml_file.write(model_yaml)
+# serialize weights to HDF5
+model.save_weights("model.h5")
+print("Saved model to disk")
+
+# model.save_weights("ner_bert_weights")
+
 
 plt.plot(history_bert.history['accuracy'])
 plt.plot(history_bert.history['val_accuracy'])

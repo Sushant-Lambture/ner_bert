@@ -250,14 +250,14 @@ with open("model.yaml", "w") as yaml_file:
 model.save_weights("model.h5")
 print("Saved model to disk")
 
-# load YAML and create model
-yaml_file = open('model.yaml', 'r')
-loaded_model_yaml = yaml_file.read()
-yaml_file.close()
-loaded_model = model_from_yaml(loaded_model_yaml)
-# load weights into new model
-loaded_model.load_weights("model.h5")
-print("Loaded model from disk")
+# # load YAML and create model
+# yaml_file = open('model.yaml', 'r')
+# loaded_model_yaml = yaml_file.read()
+# yaml_file.close()
+# loaded_model = model_from_yaml(loaded_model_yaml)
+# # load weights into new model
+# loaded_model.load_weights("model.h5")
+# print("Loaded model from disk")
 
 ## evaluate loaded model on test data
 # loaded_model.compile(loss='binary_crossentropy', optimizer='rmsprop', metrics=['accuracy'])

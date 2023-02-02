@@ -111,7 +111,7 @@ class DataSequence(torch.utils.data.Dataset):
 
 # df = df[:370000]
 # df=df[:180000]
-df=df[:150000]
+df=df[:1000]
 
 labels = [i.split() for i in df['labels'].values.tolist()]
 unique_labels = set()
@@ -241,6 +241,28 @@ BATCH_SIZE = 2
 
 model = BertModel()
 train_loop(model, df_train, df_val)
+
+# serialize model to YAML
+model_yaml = model.to_yaml()
+with open("model.yaml", "w") as yaml_file:
+    yaml_file.write(model_yaml)
+# serialize weights to HDF5
+model.save_weights("model.h5")
+print("Saved model to disk")
+
+# load YAML and create model
+yaml_file = open('model.yaml', 'r')
+loaded_model_yaml = yaml_file.read()
+yaml_file.close()
+loaded_model = model_from_yaml(loaded_model_yaml)
+# load weights into new model
+loaded_model.load_weights("model.h5")
+print("Loaded model from disk")
+
+## evaluate loaded model on test data
+# loaded_model.compile(loss='binary_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
+# score = loaded_model.evaluate(X, Y, verbose=0)
+# print("%s: %.2f%%" % (loaded_model.metrics_names[1], score[1]*100))
 
 
 ## Evaluate Model on Test Data

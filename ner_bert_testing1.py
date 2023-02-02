@@ -168,10 +168,10 @@ model.summary()
 early_stopping = EarlyStopping(mode='min',patience=5)
 history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),validation_data = ([val_input_ids,val_attention_mask],np.array(test_tag)),epochs = 1,batch_size=10*2,callbacks = early_stopping,verbose = True)
 
-# serialize model to YAML
-model_yaml = model.to_yaml()
-with open("model.yaml", "w") as yaml_file:
-    yaml_file.write(model_yaml)
+# serialize model to JSON
+model_json = model.to_json()
+with open("model.json", "w") as json_file:
+    json_file.write(model_json)
 # serialize weights to HDF5
 model.save_weights("model.h5")
 print("Saved model to disk")

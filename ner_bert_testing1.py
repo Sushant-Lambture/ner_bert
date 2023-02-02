@@ -12,10 +12,6 @@ except:
 print('Number of replicas:', strategy.num_replicas_in_sync)
 
 # pip install transformers
- evaluate loaded model on test data
-loaded_model.compile(loss='binary_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
-score = loaded_model.evaluate(X, Y, verbose=0)
-print("%s: %.2f%%" % (loaded_model.metrics_names[1], score[1]*100))
 
 import numpy as np
 import pandas as pd

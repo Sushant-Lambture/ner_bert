@@ -240,11 +240,14 @@ EPOCHS = 3
 BATCH_SIZE = 2
 
 model = BertModel()
-train_loop(model, df_train, df_val)
+model1=train_loop(model, df_train, df_val)
+
+print(f"model::",model)
+print(f"model1::",model1)
 
 from tensorflow.keras.models import load_model
 #save model to single file
-train_loop(model, df_train, df_val).save('my_model.h5')
+model1.save('my_model.h5')
 # print(model)
 # print(type(model))
 

@@ -188,6 +188,17 @@ print("Saved model to disk")
 from tensorflow.keras.models import save_model
 save_model(model, "model.h5")
 
+# load and evaluate a saved model
+from numpy import loadtxt
+from tensorflow.keras.models import load_model
+ 
+# load model
+model = load_model('model.h5')
+# summarize model.
+model.summary()
+
+
+
 # model.save_weights("ner_bert_weights")
 
 # plt.plot(history_bert.history['accuracy'])

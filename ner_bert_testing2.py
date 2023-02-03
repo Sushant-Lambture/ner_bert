@@ -193,7 +193,7 @@ from numpy import loadtxt
 from tensorflow.keras.models import load_model
  
 # load model
-model = tesorflow.keras.models.load_model('model.h5', custom_objects={"TFBertModel": transformers.TFBertModel})
+model = tensorflow.keras.models.load_model('model.h5', custom_objects={"TFBertModel": transformers.TFBertModel})
 # summarize model.
 model.summary()
 

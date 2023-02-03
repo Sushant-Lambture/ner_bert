@@ -161,23 +161,32 @@ model.summary()
 early_stopping = EarlyStopping(mode='min',patience=5)
 history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs =3,batch_size = 10*2,callbacks = early_stopping,verbose = True)
 
-# serialize model to JSON
-model_json = model.to_json()
-with open("model.json", "w") as json_file:
-    json_file.write(model_json)
-# serialize weights to HDF5
-model.save_weights("model.h5")
+# ## JSON
+# # serialize model to JSON
+# model_json = model.to_json()
+# with open("model.json", "w") as json_file:
+#     json_file.write(model_json)
+# # serialize weights to HDF5
+# model.save_weights("model.h5")
+# print("Saved model to disk")
+
+# from keras.models import model_from_json
+# # load json and create model
+# json_file = open('model.json', 'r')
+# loaded_model_json = json_file.read()
+# json_file.close()
+# loaded_model = model_from_json(loaded_model_json)
+# # load weights into new model
+# loaded_model.load_weights("model.h5")
+# print("Loaded model from disk")
+
+## TF SAVE
+model.save("model.h5")
 print("Saved model to disk")
 
-from keras.models import model_from_json
-# load json and create model
-json_file = open('model.json', 'r')
-loaded_model_json = json_file.read()
-json_file.close()
-loaded_model = model_from_json(loaded_model_json)
-# load weights into new model
-loaded_model.load_weights("model.h5")
-print("Loaded model from disk")
+# equivalent to: model.save("model.h5")
+from tensorflow.keras.models import save_model
+save_model(model, "model.h5")
 
 # model.save_weights("ner_bert_weights")
 

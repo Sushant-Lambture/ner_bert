@@ -168,9 +168,9 @@ print('model saved')
 print(model)
 print(type(model))
 
-#To load model
-model = load_model('Sushant-Lambture/ner_bert/my_model.h5')
-print('model Loaded')
+# #To load model
+# model = load_model('Sushant-Lambture/ner_bert/my_model.h5')
+# print('model Loaded')
 
 # model.save_weights("ner_bert_weights")
 

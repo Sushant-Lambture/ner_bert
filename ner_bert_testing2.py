@@ -161,34 +161,13 @@ model.summary()
 early_stopping = EarlyStopping(mode='min',patience=5)
 history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs =3,batch_size = 10*2,callbacks = early_stopping,verbose = True)
 
-from tensorflow.keras.models import load_model
-#save model to single file
-model.save('Sushant-Lambture/ner_bert/my_model.h5')
-print('model saved')
-print(model)
-print(type(model))
-
-# equivalent to: model.save("model.h5")
-from tensorflow.keras.models import save_model
-save_model(model, "model.h5")
-
-
-# load and evaluate a saved model
-from numpy import loadtxt
-from tensorflow.keras.models import load_model
- 
-# load model
-model = load_model('model.h5')
-# summarize model.
-model.summary()
-# # load dataset
-# dataset = loadtxt("pima-indians-diabetes.csv", delimiter=",")
-# # split into input (X) and output (Y) variables
-# X = dataset[:,0:8]
-# Y = dataset[:,8]
-# # evaluate the model
-# score = model.evaluate(X, Y, verbose=0)
-# print("%s: %.2f%%" % (model.metrics_names[1], score[1]*100))
+# serialize model to JSON
+model_json = model.to_json()
+with open("model.json", "w") as json_file:
+    json_file.write(model_json)
+# serialize weights to HDF5
+model.save_weights("model.h5")
+print("Saved model to disk")
 
 # model.save_weights("ner_bert_weights")
 

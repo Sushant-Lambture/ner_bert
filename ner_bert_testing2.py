@@ -169,7 +169,7 @@ with open("model.json", "w") as json_file:
 model.save_weights("model.h5")
 print("Saved model to disk")
 
-
+from keras.models import model_from_json
 # load json and create model
 json_file = open('model.json', 'r')
 loaded_model_json = json_file.read()

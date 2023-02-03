@@ -168,7 +168,7 @@ print(model)
 print(type(model))
 
 #To load model
-model = load_model('my_model.h5')
+# model = load_model('my_model.h5')
 
 # model.save_weights("ner_bert_weights")
 

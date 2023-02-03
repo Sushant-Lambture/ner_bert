@@ -163,7 +163,7 @@ history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs =
 
 from tensorflow.keras.models import load_model
 #save model to single file
-model.save('/ner_bert/my_model.h5')
+model.save('Sushant-Lambture/ner_bert/my_model.h5')
 print(model)
 print(type(model))
 

@@ -161,7 +161,16 @@ model.summary()
 early_stopping = EarlyStopping(mode='min',patience=5)
 history_bert = model.fit([input_ids,attention_mask],np.array(train_tag),epochs =3,batch_size = 10*2,callbacks = early_stopping,verbose = True)
 
-model.save_weights("ner_bert_weights")
+from tensorflow.keras.models import load_model
+#save model to single file
+model.save('my_model.h5')
+print(model)
+print(type(model))
+
+#To load model
+model = load_model('my_model.h5')
+
+# model.save_weights("ner_bert_weights")
 
 # plt.plot(history_bert.history['accuracy'])
 # plt.plot(history_bert.history['val_accuracy'])

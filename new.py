@@ -247,7 +247,7 @@ print(f"model1::",model1)
 
 from tensorflow.keras.models import load_model
 #save model to single file
-model1.save('my_model.h5')
+model.save('my_model.h5')
 # print(model)
 # print(type(model))
 

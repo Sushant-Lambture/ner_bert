@@ -111,7 +111,7 @@ class DataSequence(torch.utils.data.Dataset):
 
 # df = df[:370000]
 # df=df[:180000]
-df=df[:1000]
+df=df[:100]
 
 labels = [i.split() for i in df['labels'].values.tolist()]
 unique_labels = set()
@@ -242,13 +242,22 @@ BATCH_SIZE = 2
 model = BertModel()
 train_loop(model, df_train, df_val)
 
-# serialize model to YAML
-model_yaml = model.to_yaml()
-with open("model.yaml", "w") as yaml_file:
-    yaml_file.write(model_yaml)
-# serialize weights to HDF5
-model.save_weights("model.h5")
-print("Saved model to disk")
+from tensorflow.keras.models import load_model
+#save model to single file
+train_loop(model, df_train, df_val).save('my_model.h5')
+# print(model)
+# print(type(model))
+
+#To load model
+model = load_model('my_model.h5')
+
+# # serialize model to YAML
+# model_yaml = model.to_yaml()
+# with open("model.yaml", "w") as yaml_file:
+#     yaml_file.write(model_yaml)
+# # serialize weights to HDF5
+# model.save_weights("model.h5")
+# print("Saved model to disk")
 
 # # load YAML and create model
 # yaml_file = open('model.yaml', 'r')

@@ -41,7 +41,7 @@ dataframe = dataframe.dropna()
 # dataframe = dataframe.drop('Unnamed: 0',axis=1)
 dataframe.rename({'Unnamed: 0':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
 # dataframe.rename({'index':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
-print(dataframe)
+# print(dataframe)
 
 # dataframe = pd.read_csv(r"final.csv")
 # dataframe.rename({'Unnamed: 0':'Sentence','text':'Word','labels':'Tag'},axis=1,inplace=True)

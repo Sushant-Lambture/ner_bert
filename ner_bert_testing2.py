@@ -36,16 +36,16 @@ from sklearn.model_selection import train_test_split
 import warnings
 warnings.filterwarnings("ignore")
 
-# dataframe = pd.read_csv(r"trail1.csv")
-# dataframe = dataframe.dropna()
-# # dataframe = dataframe.drop('Unnamed: 0',axis=1)
-# dataframe.rename({'Unnamed: 0':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
-# # dataframe.rename({'index':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
-# dataframe
+dataframe = pd.read_csv(r"trail1.csv")
+dataframe = dataframe.dropna()
+# dataframe = dataframe.drop('Unnamed: 0',axis=1)
+dataframe.rename({'Unnamed: 0':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
+# dataframe.rename({'index':'Sentence','word':'Word','label':'Tag'},axis=1,inplace=True)
+print(dataframe)
 
-dataframe = pd.read_csv(r"final.csv")
-dataframe.rename({'Unnamed: 0':'Sentence','text':'Word','labels':'Tag'},axis=1,inplace=True)
-dataframe
+# dataframe = pd.read_csv(r"final.csv")
+# dataframe.rename({'Unnamed: 0':'Sentence','text':'Word','labels':'Tag'},axis=1,inplace=True)
+# print(dataframe)
 
 dataframe.Tag.unique()
 print(f"Number of Tags : {len(dataframe.Tag.unique())}")
